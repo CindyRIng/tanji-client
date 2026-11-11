@@ -1,0 +1,280 @@
+{
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "description": "数据来源说明"
+    },
+    "fetchedAt": {
+      "type": "string"
+    },
+    "totalEntries": {
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/FilterCategoryName"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "subCategories": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "entries": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/FilterRegistryEntry"
+                  }
+                }
+              },
+              "required": [
+                "name",
+                "entries"
+              ]
+            }
+          }
+        },
+        "required": [
+          "name",
+          "subCategories"
+        ]
+      }
+    },
+    "hiddenEntries": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/FilterRegistryEntry"
+      }
+    },
+    "uncategorizedEntries": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/FilterRegistryEntry"
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "source",
+    "totalEntries",
+    "categories"
+  ],
+  "description": "筛选条件全量注册表",
+  "$defs": {
+    "FilterRegistry": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string",
+          "description": "数据来源说明"
+        },
+        "fetchedAt": {
+          "type": "string"
+        },
+        "totalEntries": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/FilterCategoryName"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              },
+              "subCategories": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "entries": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/$defs/FilterRegistryEntry"
+                      }
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "entries"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "name",
+              "subCategories"
+            ]
+          }
+        },
+        "hiddenEntries": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FilterRegistryEntry"
+          }
+        },
+        "uncategorizedEntries": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FilterRegistryEntry"
+          }
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "source",
+        "totalEntries",
+        "categories"
+      ],
+      "description": "筛选条件全量注册表"
+    },
+    "FilterCategoryName": {
+      "type": "string",
+      "enum": [
+        "工商信息",
+        "联系方式",
+        "招聘信息",
+        "官网信息",
+        "经营状况",
+        "资质证书",
+        "媒体信息",
+        "推广信息",
+        "产品信息",
+        "风险信息",
+        "知识产权",
+        "探迹线索数据"
+      ]
+    },
+    "FilterRegistryEntry": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "category": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FilterCategoryName"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "subCategory": {
+          "default": "",
+          "type": "string"
+        },
+        "control": {
+          "$ref": "#/$defs/FilterControl"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "hint": {
+          "type": "string"
+        },
+        "optionsSource": {
+          "description": "候选值字典 key（input_values）",
+          "type": "string"
+        },
+        "optionCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "correlationLabels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "upstreamActionType": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "upstreamInputType": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "uiVisible": {
+          "default": true,
+          "description": "当前账号 UI 是否可见",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "key",
+        "label",
+        "category",
+        "control"
+      ],
+      "description": "一个可用筛选条件的定义"
+    },
+    "FilterControl": {
+      "type": "string",
+      "enum": [
+        "keyword",
+        "select",
+        "multiSelect",
+        "tree",
+        "numberRange",
+        "dateRange",
+        "toggle",
+        "tier",
+        "relation",
+        "preset"
+      ]
+    }
+  }
+}

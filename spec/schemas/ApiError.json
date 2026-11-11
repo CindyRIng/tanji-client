@@ -1,0 +1,89 @@
+{
+  "type": "object",
+  "properties": {
+    "code": {
+      "$ref": "#/$defs/ErrorCode"
+    },
+    "message": {
+      "type": "string"
+    },
+    "retryable": {
+      "type": "boolean"
+    },
+    "retryAfterMs": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "details": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {}
+    }
+  },
+  "required": [
+    "code",
+    "message",
+    "retryable"
+  ],
+  "$defs": {
+    "ApiError": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/ErrorCode"
+        },
+        "message": {
+          "type": "string"
+        },
+        "retryable": {
+          "type": "boolean"
+        },
+        "retryAfterMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "details": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {}
+        }
+      },
+      "required": [
+        "code",
+        "message",
+        "retryable"
+      ]
+    },
+    "ErrorCode": {
+      "type": "string",
+      "enum": [
+        "BAD_REQUEST",
+        "UNAUTHORIZED",
+        "AUTH_REQUIRED",
+        "LOGIN_FAILED",
+        "FORBIDDEN",
+        "NOT_FOUND",
+        "METHOD_NOT_ALLOWED",
+        "VALIDATION_FAILED",
+        "CONFLICT",
+        "CAPTCHA_REQUIRED",
+        "QUOTA_EXHAUSTED",
+        "RATE_LIMITED",
+        "ALREADY_RUNNING",
+        "TIMEOUT",
+        "UPSTREAM_CHANGED",
+        "UPSTREAM_UNAVAILABLE",
+        "NOT_IMPLEMENTED",
+        "CACHE_ERROR",
+        "INTERNAL"
+      ],
+      "description": "统一错误码"
+    }
+  }
+}

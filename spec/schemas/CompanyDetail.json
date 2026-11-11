@@ -1,0 +1,642 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8,32}$",
+      "description": "探迹企业 ID（响应中的 _id）"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "entityType": {
+      "default": "enterprise",
+      "$ref": "#/$defs/EntityType"
+    },
+    "uscc": {
+      "type": "string",
+      "pattern": "^[0-9A-Z]{18}$",
+      "description": "统一社会信用代码"
+    },
+    "legalRepresentative": {
+      "type": "string"
+    },
+    "regCapital": {
+      "$ref": "#/$defs/RegCapital"
+    },
+    "foundTime": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "日期 YYYY-MM-DD"
+    },
+    "address": {
+      "type": "string"
+    },
+    "province": {
+      "type": "string"
+    },
+    "operStatus": {
+      "description": "登记状态，如“营业 > 存续”",
+      "type": "string"
+    },
+    "industry": {
+      "$ref": "#/$defs/Industry"
+    },
+    "scale": {
+      "$ref": "#/$defs/CompanyScale"
+    },
+    "annualTurnover": {
+      "description": "年营业额区间文本",
+      "type": "string"
+    },
+    "homepage": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "uri"
+        },
+        {
+          "type": "string",
+          "minLength": 1
+        }
+      ]
+    },
+    "phoneCount": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "emailCount": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "contactCount": {
+      "description": "联系方式总数",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "unlocked": {
+      "description": "当前账号是否已解锁该企业",
+      "type": "boolean"
+    },
+    "tags": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "listedTags": {
+      "default": [],
+      "description": "上市标签，如 美股(TC)/新三板",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "score": {
+      "description": "搜索相关度分",
+      "type": "number"
+    },
+    "rankScore": {
+      "type": "number"
+    },
+    "highlight": {
+      "description": "高亮片段",
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "updatedAt": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,9})?(?:Z|[+-]\\d{2}:\\d{2})$",
+      "description": "ISO-8601 日期时间（含时区），如 2026-11-09T19:38:00+08:00"
+    },
+    "businessScope": {
+      "description": "经营范围",
+      "type": "string"
+    },
+    "registrationAuthority": {
+      "description": "登记机关",
+      "type": "string"
+    },
+    "approvedAt": {
+      "description": "核准日期",
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "companyType": {
+      "description": "公司类型",
+      "type": "string"
+    },
+    "registrationNumber": {
+      "description": "注册号",
+      "type": "string"
+    },
+    "organizationCode": {
+      "description": "组织机构代码",
+      "type": "string"
+    },
+    "englishName": {
+      "type": "string"
+    },
+    "insuredCount": {
+      "description": "参保人数",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "paidInCapital": {
+      "description": "实缴资本（元）",
+      "type": "number",
+      "minimum": 0
+    },
+    "operatingPeriod": {
+      "description": "营业期限",
+      "type": "string"
+    },
+    "shareholders": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Shareholder"
+      }
+    },
+    "keyPeople": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/KeyPerson"
+      }
+    },
+    "officeAddresses": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "branchCount": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "investmentCount": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "changeCount": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "annualReportYears": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": -9007199254740991,
+        "maximum": 9007199254740991
+      }
+    },
+    "formerNames": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "extra": {
+      "default": {},
+      "description": "未建模的原始字段",
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {}
+    },
+    "fetchedAt": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,9})?(?:Z|[+-]\\d{2}:\\d{2})$",
+      "description": "ISO-8601 日期时间（含时区），如 2026-11-09T19:38:00+08:00"
+    },
+    "cached": {
+      "default": false,
+      "description": "是否命中本地缓存",
+      "type": "boolean"
+    },
+    "sections": {
+      "description": "本次实际拉取的分段；缺省/全量表示完整详情",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/CompanyDetailSection"
+      }
+    },
+    "partial": {
+      "default": false,
+      "description": "是否为分段（轻量）结果",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "id",
+    "name"
+  ],
+  "description": "企业详情",
+  "$defs": {
+    "CompanyDetail": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8,32}$",
+          "description": "探迹企业 ID（响应中的 _id）"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "entityType": {
+          "default": "enterprise",
+          "$ref": "#/$defs/EntityType"
+        },
+        "uscc": {
+          "type": "string",
+          "pattern": "^[0-9A-Z]{18}$",
+          "description": "统一社会信用代码"
+        },
+        "legalRepresentative": {
+          "type": "string"
+        },
+        "regCapital": {
+          "$ref": "#/$defs/RegCapital"
+        },
+        "foundTime": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "日期 YYYY-MM-DD"
+        },
+        "address": {
+          "type": "string"
+        },
+        "province": {
+          "type": "string"
+        },
+        "operStatus": {
+          "description": "登记状态，如“营业 > 存续”",
+          "type": "string"
+        },
+        "industry": {
+          "$ref": "#/$defs/Industry"
+        },
+        "scale": {
+          "$ref": "#/$defs/CompanyScale"
+        },
+        "annualTurnover": {
+          "description": "年营业额区间文本",
+          "type": "string"
+        },
+        "homepage": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "uri"
+            },
+            {
+              "type": "string",
+              "minLength": 1
+            }
+          ]
+        },
+        "phoneCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "emailCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "contactCount": {
+          "description": "联系方式总数",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "unlocked": {
+          "description": "当前账号是否已解锁该企业",
+          "type": "boolean"
+        },
+        "tags": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "listedTags": {
+          "default": [],
+          "description": "上市标签，如 美股(TC)/新三板",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "score": {
+          "description": "搜索相关度分",
+          "type": "number"
+        },
+        "rankScore": {
+          "type": "number"
+        },
+        "highlight": {
+          "description": "高亮片段",
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "updatedAt": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,9})?(?:Z|[+-]\\d{2}:\\d{2})$",
+          "description": "ISO-8601 日期时间（含时区），如 2026-11-09T19:38:00+08:00"
+        },
+        "businessScope": {
+          "description": "经营范围",
+          "type": "string"
+        },
+        "registrationAuthority": {
+          "description": "登记机关",
+          "type": "string"
+        },
+        "approvedAt": {
+          "description": "核准日期",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "companyType": {
+          "description": "公司类型",
+          "type": "string"
+        },
+        "registrationNumber": {
+          "description": "注册号",
+          "type": "string"
+        },
+        "organizationCode": {
+          "description": "组织机构代码",
+          "type": "string"
+        },
+        "englishName": {
+          "type": "string"
+        },
+        "insuredCount": {
+          "description": "参保人数",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "paidInCapital": {
+          "description": "实缴资本（元）",
+          "type": "number",
+          "minimum": 0
+        },
+        "operatingPeriod": {
+          "description": "营业期限",
+          "type": "string"
+        },
+        "shareholders": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Shareholder"
+          }
+        },
+        "keyPeople": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/KeyPerson"
+          }
+        },
+        "officeAddresses": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "branchCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "investmentCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "changeCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "annualReportYears": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          }
+        },
+        "formerNames": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "extra": {
+          "default": {},
+          "description": "未建模的原始字段",
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {}
+        },
+        "fetchedAt": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,9})?(?:Z|[+-]\\d{2}:\\d{2})$",
+          "description": "ISO-8601 日期时间（含时区），如 2026-11-09T19:38:00+08:00"
+        },
+        "cached": {
+          "default": false,
+          "description": "是否命中本地缓存",
+          "type": "boolean"
+        },
+        "sections": {
+          "description": "本次实际拉取的分段；缺省/全量表示完整详情",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CompanyDetailSection"
+          }
+        },
+        "partial": {
+          "default": false,
+          "description": "是否为分段（轻量）结果",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "description": "企业详情"
+    },
+    "EntityType": {
+      "type": "string",
+      "enum": [
+        "enterprise",
+        "person",
+        "unknown"
+      ]
+    },
+    "RegCapital": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number",
+          "minimum": 0,
+          "description": "金额数值（人民币元）"
+        },
+        "coinType": {
+          "default": "人民币",
+          "description": "币种",
+          "type": "string"
+        },
+        "text": {
+          "description": "展示文本，如“108万人民币”",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "Industry": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "description": "一级行业",
+          "type": "string"
+        },
+        "second": {
+          "description": "二级行业",
+          "type": "string"
+        },
+        "third": {
+          "description": "三级行业",
+          "type": "string"
+        },
+        "fourth": {
+          "description": "四级行业",
+          "type": "string"
+        }
+      }
+    },
+    "CompanyScale": {
+      "type": "object",
+      "properties": {
+        "min": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "max": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "text": {
+          "description": "展示文本，如“100-499人”",
+          "type": "string"
+        }
+      }
+    },
+    "Shareholder": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "ratio": {
+          "description": "持股比例（%）",
+          "type": "number"
+        },
+        "subscribedAmount": {
+          "type": "number"
+        },
+        "subscribedDate": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "日期 YYYY-MM-DD"
+        },
+        "isControlling": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "KeyPerson": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        },
+        "ratio": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "CompanyDetailSection": {
+      "type": "string",
+      "enum": [
+        "basic",
+        "detail",
+        "holders",
+        "members",
+        "invests",
+        "branches",
+        "alterations"
+      ],
+      "description": "企业详情分段：basic/detail/holders/members/invests/branches/alterations"
+    }
+  }
+}

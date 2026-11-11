@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "properties": {
+    "queryId": {
+      "type": "string",
+      "pattern": "^q_[0-9]{8,}_[0-9a-z]{4,}$",
+      "description": "查询会话 ID，如 q_20261109_ab12cd"
+    },
+    "page": {
+      "default": 1,
+      "description": "页码，从 1 开始",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "pageSize": {
+      "default": 20,
+      "description": "每页条数，1-100",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "refresh": {
+      "type": "string",
+      "enum": [
+        "true",
+        "false"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

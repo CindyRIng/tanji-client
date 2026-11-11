@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "properties": {
+    "deleted": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "scope": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "deleted",
+    "scope"
+  ],
+  "$defs": {
+    "CacheClearResult": {
+      "type": "object",
+      "properties": {
+        "deleted": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "scope": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "deleted",
+        "scope"
+      ]
+    }
+  }
+}

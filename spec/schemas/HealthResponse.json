@@ -1,0 +1,120 @@
+{
+  "type": "object",
+  "properties": {
+    "ok": {
+      "type": "boolean"
+    },
+    "version": {
+      "type": "string",
+      "description": "客户端版本"
+    },
+    "uptimeSec": {
+      "type": "number",
+      "minimum": 0
+    },
+    "schemaVersion": {
+      "type": "string"
+    },
+    "browser": {
+      "type": "object",
+      "properties": {
+        "connected": {
+          "type": "boolean"
+        },
+        "pid": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "headless": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "connected"
+      ]
+    },
+    "cache": {
+      "type": "object",
+      "properties": {
+        "dbPath": {
+          "type": "string"
+        },
+        "ready": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "ready"
+      ]
+    }
+  },
+  "required": [
+    "ok",
+    "version",
+    "uptimeSec",
+    "schemaVersion"
+  ],
+  "description": "存活探针（不校验登录态）",
+  "$defs": {
+    "HealthResponse": {
+      "type": "object",
+      "properties": {
+        "ok": {
+          "type": "boolean"
+        },
+        "version": {
+          "type": "string",
+          "description": "客户端版本"
+        },
+        "uptimeSec": {
+          "type": "number",
+          "minimum": 0
+        },
+        "schemaVersion": {
+          "type": "string"
+        },
+        "browser": {
+          "type": "object",
+          "properties": {
+            "connected": {
+              "type": "boolean"
+            },
+            "pid": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "headless": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "connected"
+          ]
+        },
+        "cache": {
+          "type": "object",
+          "properties": {
+            "dbPath": {
+              "type": "string"
+            },
+            "ready": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "ready"
+          ]
+        }
+      },
+      "required": [
+        "ok",
+        "version",
+        "uptimeSec",
+        "schemaVersion"
+      ],
+      "description": "存活探针（不校验登录态）"
+    }
+  }
+}

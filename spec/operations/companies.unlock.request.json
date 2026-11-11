@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8,32}$",
+      "description": "探迹企业 ID（响应中的 _id）"
+    },
+    "confirm": {
+      "type": "boolean",
+      "const": true,
+      "description": "必须显式确认，解锁会消耗 1 个额度点"
+    },
+    "idempotencyKey": {
+      "description": "幂等键，避免重复扣额度",
+      "type": "string",
+      "minLength": 8
+    },
+    "quota": {
+      "default": false,
+      "description": "解锁后额外查询一次剩余额度（多 1 次上游调用，默认关闭）",
+      "type": "boolean"
+    },
+    "contacts": {
+      "default": false,
+      "description": "解锁后立即拉取联系人（多 1 次上游调用，默认关闭）",
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}

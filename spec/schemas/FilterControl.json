@@ -1,0 +1,32 @@
+{
+  "type": "string",
+  "enum": [
+    "keyword",
+    "select",
+    "multiSelect",
+    "tree",
+    "numberRange",
+    "dateRange",
+    "toggle",
+    "tier",
+    "relation",
+    "preset"
+  ],
+  "$defs": {
+    "FilterControl": {
+      "type": "string",
+      "enum": [
+        "keyword",
+        "select",
+        "multiSelect",
+        "tree",
+        "numberRange",
+        "dateRange",
+        "toggle",
+        "tier",
+        "relation",
+        "preset"
+      ]
+    }
+  }
+}

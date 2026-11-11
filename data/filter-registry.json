@@ -1,0 +1,4287 @@
+{
+  "schemaVersion": "1.0",
+  "source": "docs/04-filter-catalog.md（探迹 lightweight-configs + UI 枚举，2026-11-09）",
+  "fetchedAt": "2026-11-09",
+  "totalEntries": 345,
+  "categories": [
+    {
+      "name": "工商信息",
+      "subCategories": [
+        {
+          "name": "基础信息",
+          "entries": [
+            {
+              "key": "name",
+              "label": "企业名称",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "desc",
+              "label": "企业简介",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "foundTime",
+              "label": "成立时间",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "operStatus_v2",
+              "label": "登记状态",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "multiSelect",
+              "optionsSource": "operStatus_v2",
+              "optionCount": 4,
+              "upstreamActionType": 3,
+              "upstreamInputType": 2,
+              "uiVisible": true
+            },
+            {
+              "key": "regCapitalRmb",
+              "label": "注册资本",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "numberRange",
+              "unit": "万元人民币",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "totalSubscriptionAmount",
+              "label": "认缴金额",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "numberRange",
+              "unit": "万元人民币",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "subscriptionDateList",
+              "label": "认缴出资日期",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "totalPayAmount",
+              "label": "实缴资本",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "numberRange",
+              "unit": "万元人民币",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "payGapRate",
+              "label": "实缴比例",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "numberRange",
+              "unit": "百分比",
+              "hint": "实缴比例是基于实缴资本占当前注册资本的比例计算出的参考值，比例为100%说明企业已全额实缴，比例为0%说明企业尚未缴纳实缴资本",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "address",
+              "label": "注册地址",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "tree",
+              "optionsSource": "addressV2",
+              "upstreamActionType": 3,
+              "upstreamInputType": 8,
+              "uiVisible": true
+            },
+            {
+              "key": "addressValue",
+              "label": "注册详细地址",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "industriesV2",
+              "label": "国标行业",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "tree",
+              "optionsSource": "industriesV2",
+              "upstreamActionType": 3,
+              "upstreamInputType": 8,
+              "uiVisible": true
+            },
+            {
+              "key": "tungeeIndustries",
+              "label": "探迹行业",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "tree",
+              "hint": "探迹行业是基于用户拓客的业务属性，运用大数据模型进行深度分析与精准匹配后，所呈现出的一种更契合企业业务特点的创新性行业分类方式。",
+              "optionsSource": "tungeeIndustries",
+              "optionCount": 6,
+              "upstreamActionType": 3,
+              "upstreamInputType": 8,
+              "uiVisible": true
+            },
+            {
+              "key": "business",
+              "label": "经营范围",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "enterpriseType",
+              "label": "企业类型（工商登记）",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "multiSelect",
+              "optionsSource": "enterpriseType",
+              "optionCount": 8,
+              "upstreamActionType": 3,
+              "upstreamInputType": 2,
+              "uiVisible": true
+            },
+            {
+              "key": "registrationAuthority",
+              "label": "登记机关",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "institutionTypes",
+              "label": "机构类型",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "multiSelect",
+              "optionsSource": "institutionTypes",
+              "optionCount": 7,
+              "upstreamActionType": 3,
+              "upstreamInputType": 2,
+              "uiVisible": true
+            },
+            {
+              "key": "stateOwnedTags",
+              "label": "国有企业",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "multiSelect",
+              "optionsSource": "stateOwnedTags",
+              "optionCount": 9,
+              "upstreamActionType": 3,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "formerNames",
+              "label": "曾用名",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "deactivateDate",
+              "label": "吊销时间",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "revokeDate",
+              "label": "注销时间",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "legalRelatedEnterpriseNum",
+              "label": "法人关联企业数量",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "numberRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "investmentFormList",
+              "label": "出资形式",
+              "category": "工商信息",
+              "subCategory": "基础信息",
+              "control": "relation",
+              "optionsSource": "investmentFormList",
+              "optionCount": 10,
+              "upstreamActionType": 3,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "营业收入",
+          "entries": [
+            {
+              "key": "hasEaTotalSales",
+              "label": "有无公开营业收入",
+              "category": "工商信息",
+              "subCategory": "营业收入",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "latestEaTotalSalesValue",
+              "label": "最新营业收入金额",
+              "category": "工商信息",
+              "subCategory": "营业收入",
+              "control": "numberRange",
+              "unit": "万元人民币",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "办公地址",
+          "entries": [
+            {
+              "key": "hasOfficeAddress",
+              "label": "有无办公地址",
+              "category": "工商信息",
+              "subCategory": "办公地址",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "hasRecommendedOfficeAddress",
+              "label": "有无推荐办公地址",
+              "category": "工商信息",
+              "subCategory": "办公地址",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "officeAddressVerifyTypes",
+              "label": "办公地址验证类型",
+              "category": "工商信息",
+              "subCategory": "办公地址",
+              "control": "select",
+              "optionsSource": "officeAddressVerifyTypes",
+              "optionCount": 4,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "officeAddressList",
+              "label": "办公详细地址",
+              "category": "工商信息",
+              "subCategory": "办公地址",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "officeAddressTotalNum",
+              "label": "办公地址数量",
+              "category": "工商信息",
+              "subCategory": "办公地址",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "投资任职",
+          "entries": [
+            {
+              "key": "branchOfficeNumber",
+              "label": "分支机构数量",
+              "category": "工商信息",
+              "subCategory": "投资任职",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "hasCalInvestment",
+              "label": "有无对外投资",
+              "category": "工商信息",
+              "subCategory": "投资任职",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "holderNumber",
+              "label": "股东人数",
+              "category": "工商信息",
+              "subCategory": "投资任职",
+              "control": "numberRange",
+              "unit": "人",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "maxRatio",
+              "label": "最大股东占比",
+              "category": "工商信息",
+              "subCategory": "投资任职",
+              "control": "numberRange",
+              "unit": "%",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "holderTypes",
+              "label": "股东类型",
+              "category": "工商信息",
+              "subCategory": "投资任职",
+              "control": "multiSelect",
+              "optionsSource": "holderTypes",
+              "optionCount": 2,
+              "upstreamActionType": 9,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "majorShareholderType",
+              "label": "大股东类型",
+              "category": "工商信息",
+              "subCategory": "投资任职",
+              "control": "multiSelect",
+              "optionsSource": "majorShareholderType",
+              "optionCount": 2,
+              "upstreamActionType": 10,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "allHolderType",
+              "label": "全部股东类型",
+              "category": "工商信息",
+              "subCategory": "投资任职",
+              "control": "multiSelect",
+              "optionsSource": "allHolderType",
+              "optionCount": 2,
+              "upstreamActionType": 10,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "personName",
+              "label": "人员姓名",
+              "category": "工商信息",
+              "subCategory": "投资任职",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "年报信息",
+          "entries": [
+            {
+              "key": "hasAnnualReport",
+              "label": "企业年报",
+              "category": "工商信息",
+              "subCategory": "年报信息",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "arYearList",
+              "label": "年报年份",
+              "category": "工商信息",
+              "subCategory": "年报信息",
+              "control": "multiSelect",
+              "optionsSource": "arYearList",
+              "optionCount": 13,
+              "upstreamActionType": 3,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "arInsuranceNumber",
+              "label": "参保人数",
+              "category": "工商信息",
+              "subCategory": "年报信息",
+              "control": "numberRange",
+              "unit": "人",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "arAddress",
+              "label": "通讯地址",
+              "category": "工商信息",
+              "subCategory": "年报信息",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "hasInvestment",
+              "label": "有无年报对外投资",
+              "category": "工商信息",
+              "subCategory": "年报信息",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "totalTax",
+              "label": "纳税金额",
+              "category": "工商信息",
+              "subCategory": "年报信息",
+              "control": "numberRange",
+              "unit": "万元人民币",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "totalAssets",
+              "label": "资产总额",
+              "category": "工商信息",
+              "subCategory": "年报信息",
+              "control": "numberRange",
+              "unit": "万元人民币",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "totalOperatingIncome",
+              "label": "营业总收入",
+              "category": "工商信息",
+              "subCategory": "年报信息",
+              "control": "numberRange",
+              "unit": "万元人民币",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "netProfit",
+              "label": "净利润",
+              "category": "工商信息",
+              "subCategory": "年报信息",
+              "control": "numberRange",
+              "unit": "万元人民币",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "profit",
+              "label": "利润总额",
+              "category": "工商信息",
+              "subCategory": "年报信息",
+              "control": "numberRange",
+              "unit": "万元人民币",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "totalLiabilities",
+              "label": "负债总额",
+              "category": "工商信息",
+              "subCategory": "年报信息",
+              "control": "numberRange",
+              "unit": "万元人民币",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "isPaperAnnualReport",
+              "label": "最新上传是否纸质年报",
+              "category": "工商信息",
+              "subCategory": "年报信息",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "变更信息",
+          "entries": [
+            {
+              "key": "lastAddressChangeDate",
+              "label": "最新地址变更日期",
+              "category": "工商信息",
+              "subCategory": "变更信息",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "hasAlter",
+              "label": "有无变更信息",
+              "category": "工商信息",
+              "subCategory": "变更信息",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "alterItems",
+              "label": "变更类型",
+              "category": "工商信息",
+              "subCategory": "变更信息",
+              "control": "relation",
+              "optionsSource": "alterItems",
+              "optionCount": 7,
+              "upstreamActionType": 3,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "alterDateList",
+              "label": "变更日期",
+              "category": "工商信息",
+              "subCategory": "变更信息",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "联系方式",
+      "subCategories": [
+        {
+          "name": "基本信息",
+          "entries": [
+            {
+              "key": "hasMobile",
+              "label": "手机",
+              "category": "联系方式",
+              "subCategory": "基本信息",
+              "control": "relation",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "hasPhone",
+              "label": "固话",
+              "category": "联系方式",
+              "subCategory": "基本信息",
+              "control": "relation",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "hasEmail",
+              "label": "邮箱",
+              "category": "联系方式",
+              "subCategory": "基本信息",
+              "control": "relation",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "hasLinkedin",
+              "label": "有无领英",
+              "category": "联系方式",
+              "subCategory": "基本信息",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "mobileNumber",
+              "label": "手机号量级",
+              "category": "联系方式",
+              "subCategory": "基本信息",
+              "control": "tier",
+              "optionsSource": "mobileNumberList",
+              "optionCount": 6,
+              "upstreamActionType": 0,
+              "upstreamInputType": 7,
+              "uiVisible": true
+            },
+            {
+              "key": "hasValidMobile",
+              "label": "有效手机号码",
+              "category": "联系方式",
+              "subCategory": "基本信息",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "hasAssociateContact",
+              "label": "有无关联联系方式",
+              "category": "联系方式",
+              "subCategory": "基本信息",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "associateContactTypeList",
+              "label": "关联联系方式类型",
+              "category": "联系方式",
+              "subCategory": "基本信息",
+              "control": "select",
+              "optionsSource": "associateContactTypeList",
+              "optionCount": 3,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "号码信息",
+          "entries": [
+            {
+              "key": "mobileRegion",
+              "label": "手机号地区",
+              "category": "联系方式",
+              "subCategory": "号码信息",
+              "control": "multiSelect",
+              "optionsSource": "address",
+              "upstreamActionType": 3,
+              "upstreamInputType": 2,
+              "uiVisible": true
+            },
+            {
+              "key": "hotMobileRegion",
+              "label": "HOT号码地区",
+              "category": "联系方式",
+              "subCategory": "号码信息",
+              "control": "multiSelect",
+              "optionsSource": "address",
+              "upstreamActionType": 3,
+              "upstreamInputType": 2,
+              "uiVisible": true
+            },
+            {
+              "key": "contactPositions",
+              "label": "所属岗位",
+              "category": "联系方式",
+              "subCategory": "号码信息",
+              "control": "select",
+              "optionsSource": "contactPositionList",
+              "optionCount": 3,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "contactPositionRelates",
+              "label": "联系人所属部门",
+              "category": "联系方式",
+              "subCategory": "号码信息",
+              "control": "tree",
+              "optionsSource": "contactPositionRelateTree",
+              "optionCount": 8,
+              "upstreamActionType": 2,
+              "upstreamInputType": 8,
+              "uiVisible": true
+            },
+            {
+              "key": "mobile_departments",
+              "label": "手机号所属部门",
+              "category": "联系方式",
+              "subCategory": "号码信息",
+              "control": "tree",
+              "optionsSource": "contactPositionRelateTree",
+              "optionCount": 8,
+              "upstreamActionType": 2,
+              "upstreamInputType": 8,
+              "uiVisible": true
+            },
+            {
+              "key": "mobileSourceList",
+              "label": "手机号渠道",
+              "category": "联系方式",
+              "subCategory": "号码信息",
+              "control": "select",
+              "optionsSource": "contactSource",
+              "optionCount": 17,
+              "upstreamActionType": 2,
+              "upstreamInputType": 2,
+              "uiVisible": true
+            },
+            {
+              "key": "phoneSourceList",
+              "label": "固话渠道",
+              "category": "联系方式",
+              "subCategory": "号码信息",
+              "control": "select",
+              "optionsSource": "contactSource",
+              "optionCount": 17,
+              "upstreamActionType": 2,
+              "upstreamInputType": 2,
+              "uiVisible": true
+            },
+            {
+              "key": "emailSourceList",
+              "label": "邮箱渠道",
+              "category": "联系方式",
+              "subCategory": "号码信息",
+              "control": "select",
+              "optionsSource": "contactSource",
+              "optionCount": 17,
+              "upstreamActionType": 2,
+              "upstreamInputType": 2,
+              "uiVisible": true
+            },
+            {
+              "key": "contactSource",
+              "label": "联系人渠道",
+              "category": "联系方式",
+              "subCategory": "号码信息",
+              "control": "select",
+              "optionsSource": "contactSource",
+              "optionCount": 17,
+              "upstreamActionType": 2,
+              "upstreamInputType": 2,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "标签信息",
+          "entries": [
+            {
+              "key": "hasKeyman",
+              "label": "有无Hot",
+              "category": "联系方式",
+              "subCategory": "标签信息",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "hasRecentlyContact",
+              "label": "近期收录",
+              "category": "联系方式",
+              "subCategory": "标签信息",
+              "control": "select",
+              "optionsSource": "recentlyContactTypeList",
+              "optionCount": 3,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "hasHighFreqContact",
+              "label": "有无代理记账号码",
+              "category": "联系方式",
+              "subCategory": "标签信息",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "highFreqContactTypeList",
+              "label": "代理记账号码类型",
+              "category": "联系方式",
+              "subCategory": "标签信息",
+              "control": "select",
+              "optionsSource": "highFreqContactTypeList",
+              "optionCount": 3,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "hasNotHighFreqContact",
+              "label": "有无非代理记账号码",
+              "category": "联系方式",
+              "subCategory": "标签信息",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "notHighFreqContactTypeList",
+              "label": "非代理记账号码类型",
+              "category": "联系方式",
+              "subCategory": "标签信息",
+              "control": "select",
+              "optionsSource": "highFreqContactTypeList",
+              "optionCount": 3,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "kpRelateNumber",
+              "label": "Hot关联企业数量",
+              "category": "联系方式",
+              "subCategory": "标签信息",
+              "control": "multiSelect",
+              "optionsSource": "kpRelateNumberList",
+              "optionCount": 4,
+              "upstreamActionType": 3,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "招聘信息",
+      "subCategories": [
+        {
+          "name": "岗位信息",
+          "entries": [
+            {
+              "key": "recruitingName",
+              "label": "岗位名称",
+              "category": "招聘信息",
+              "subCategory": "岗位信息",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "recruitingDesc",
+              "label": "岗位描述",
+              "category": "招聘信息",
+              "subCategory": "岗位信息",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "recruitingTypes",
+              "label": "岗位类型",
+              "category": "招聘信息",
+              "subCategory": "岗位信息",
+              "control": "select",
+              "optionsSource": "recruitingTypes",
+              "optionCount": 3,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "recruitingPublishedTime",
+              "label": "岗位发布时间",
+              "category": "招聘信息",
+              "subCategory": "岗位信息",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "recruitingAvgWorkingSalary",
+              "label": "岗位平均薪酬",
+              "category": "招聘信息",
+              "subCategory": "岗位信息",
+              "control": "numberRange",
+              "unit": "元人民币/月",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "recruitingAvgUpdate",
+              "label": "岗位平均更新频率",
+              "category": "招聘信息",
+              "subCategory": "岗位信息",
+              "control": "keyword",
+              "upstreamActionType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "benefitList",
+              "label": "企业福利",
+              "category": "招聘信息",
+              "subCategory": "岗位信息",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "招聘情况",
+          "entries": [
+            {
+              "key": "recruitingSource",
+              "label": "招聘渠道",
+              "category": "招聘信息",
+              "subCategory": "招聘情况",
+              "control": "relation",
+              "optionsSource": "recruitingSource",
+              "optionCount": 5,
+              "upstreamActionType": 2,
+              "upstreamInputType": 2,
+              "uiVisible": true
+            },
+            {
+              "key": "recruitingAddress",
+              "label": "招聘地址",
+              "category": "招聘信息",
+              "subCategory": "招聘情况",
+              "control": "select",
+              "optionsSource": "address",
+              "upstreamActionType": 2,
+              "upstreamInputType": 2,
+              "uiVisible": true
+            },
+            {
+              "key": "recruitingAddress.value",
+              "label": "招聘详细地址",
+              "category": "招聘信息",
+              "subCategory": "招聘情况",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "recruitingCurrentNo",
+              "label": "当前招聘岗位数",
+              "category": "招聘信息",
+              "subCategory": "招聘情况",
+              "control": "numberRange",
+              "unit": "个",
+              "hint": "所选取渠道下所有招聘岗位数相加，存在偏大情况",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "recruitingCurrentCount",
+              "label": "当前招聘人数",
+              "category": "招聘信息",
+              "subCategory": "招聘情况",
+              "control": "numberRange",
+              "unit": "人",
+              "hint": "所选取渠道下所有招聘岗位数相加，存在偏大情况",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "recruitingSourceCount",
+              "label": "当前招聘渠道个数",
+              "category": "招聘信息",
+              "subCategory": "招聘情况",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "recruitingNameLastMonth",
+              "label": "最近1个月招聘岗位名称",
+              "category": "招聘信息",
+              "subCategory": "招聘情况",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "recruitingLastThreeMonthNo",
+              "label": "近三个月招聘岗位总数",
+              "category": "招聘信息",
+              "subCategory": "招聘情况",
+              "control": "numberRange",
+              "unit": "个",
+              "hint": "所选取渠道下所有招聘岗位数相加，存在偏大情况",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "recruitingLastThreeMonthCount",
+              "label": "近三个月招聘总人数",
+              "category": "招聘信息",
+              "subCategory": "招聘情况",
+              "control": "numberRange",
+              "unit": "人",
+              "hint": "所选取渠道下所有招聘岗位数相加，存在偏大情况",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "recruitingCityCount",
+              "label": "招聘城市数量",
+              "category": "招聘信息",
+              "subCategory": "招聘情况",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "官网信息",
+      "subCategories": [
+        {
+          "name": "网站信息",
+          "entries": [
+            {
+              "key": "homepage",
+              "label": "有无官网",
+              "category": "官网信息",
+              "subCategory": "网站信息",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "hasICP",
+              "label": "有无ICP备案",
+              "category": "官网信息",
+              "subCategory": "网站信息",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "ICPListNumber",
+              "label": "ICP备案数量",
+              "category": "官网信息",
+              "subCategory": "网站信息",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "filingAuditTimeList",
+              "label": "ICP备案时间",
+              "category": "官网信息",
+              "subCategory": "网站信息",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "IP信息",
+          "entries": [
+            {
+              "key": "ipOperator",
+              "label": "IP运营节点",
+              "category": "官网信息",
+              "subCategory": "IP信息",
+              "control": "relation",
+              "optionsSource": "ipOperator",
+              "upstreamActionType": 2,
+              "upstreamInputType": 2,
+              "uiVisible": true
+            },
+            {
+              "key": "ipAddress",
+              "label": "IP物理位置",
+              "category": "官网信息",
+              "subCategory": "IP信息",
+              "control": "select",
+              "optionsSource": "ipAddress",
+              "optionCount": 564,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "SEO指标",
+          "entries": [
+            {
+              "key": "domainKeywords",
+              "label": "网站关键词（Keywords）",
+              "category": "官网信息",
+              "subCategory": "SEO指标",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "domainDesc",
+              "label": "网站描述（Description）",
+              "category": "官网信息",
+              "subCategory": "SEO指标",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "domainTitle",
+              "label": "标题（Title）",
+              "category": "官网信息",
+              "subCategory": "SEO指标",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "icpHomepageContent",
+              "label": "网站内容",
+              "category": "官网信息",
+              "subCategory": "SEO指标",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "weightOnBaidu",
+              "label": "百度权重",
+              "category": "官网信息",
+              "subCategory": "SEO指标",
+              "control": "numberRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "weightOn360",
+              "label": "360权重",
+              "category": "官网信息",
+              "subCategory": "SEO指标",
+              "control": "numberRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "baiduCitedNo",
+              "label": "百度收录量",
+              "category": "官网信息",
+              "subCategory": "SEO指标",
+              "control": "numberRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "360CitedNo",
+              "label": "360收录量",
+              "category": "官网信息",
+              "subCategory": "SEO指标",
+              "control": "numberRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "技术指标",
+          "entries": [
+            {
+              "key": "domainTechnologies",
+              "label": "网站技术",
+              "category": "官网信息",
+              "subCategory": "技术指标",
+              "control": "select",
+              "optionsSource": "domainTechnologies",
+              "optionCount": 2,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "domainAge",
+              "label": "域名年龄",
+              "category": "官网信息",
+              "subCategory": "技术指标",
+              "control": "numberRange",
+              "unit": "年",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "domainExpireDate",
+              "label": "域名到期时间",
+              "category": "官网信息",
+              "subCategory": "技术指标",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "W3CDeviate",
+              "label": "W3C标准偏离值",
+              "category": "官网信息",
+              "subCategory": "技术指标",
+              "control": "numberRange",
+              "hint": "1-15属于正常范围",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "avgErrorRate",
+              "label": "平均访问错误率",
+              "category": "官网信息",
+              "subCategory": "技术指标",
+              "control": "numberRange",
+              "unit": "百分比",
+              "hint": "代表访问时的错误百分比，如：100%即无法访问",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "avgResponseTime",
+              "label": "平均访问速度",
+              "category": "官网信息",
+              "subCategory": "技术指标",
+              "control": "numberRange",
+              "unit": "秒",
+              "hint": "代表访问时的平均速度，数值越小访问速度越快",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "官网模块",
+          "entries": [
+            {
+              "key": "hasDomainServiceOnLine",
+              "label": "在线客服",
+              "category": "官网信息",
+              "subCategory": "官网模块",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "hasDomainHttps",
+              "label": "Https模块",
+              "category": "官网信息",
+              "subCategory": "官网模块",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "domainServiceOnLineList",
+              "label": "客服类型",
+              "category": "官网信息",
+              "subCategory": "官网模块",
+              "control": "select",
+              "optionsSource": "domainServiceOnLineList",
+              "optionCount": 23,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "domainHomepageLayout",
+              "label": "首页布局",
+              "category": "官网信息",
+              "subCategory": "官网模块",
+              "control": "select",
+              "optionsSource": "domainHomepageLayout",
+              "optionCount": 8,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "经营状况",
+      "subCategories": [
+        {
+          "name": "业务情况",
+          "entries": [
+            {
+              "key": "businessType",
+              "label": "业务类型",
+              "category": "经营状况",
+              "subCategory": "业务情况",
+              "control": "keyword",
+              "hint": "To B代表To Business，即企业的产品卖给另外一个企业。To C代表To Consumer，即企业的产品卖给个人消费者。",
+              "upstreamActionType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "enterpriseClassification",
+              "label": "企业分类",
+              "category": "经营状况",
+              "subCategory": "业务情况",
+              "control": "select",
+              "optionsSource": "enterpriseClassification",
+              "optionCount": 2,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "businessKeywords",
+              "label": "主营业务",
+              "category": "经营状况",
+              "subCategory": "业务情况",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "enterpriseScaleAlgV2",
+              "label": "公司规模",
+              "category": "经营状况",
+              "subCategory": "业务情况",
+              "control": "tier",
+              "unit": "人",
+              "hint": "基于企业公开数据分析得出",
+              "optionsSource": "enterpriseScaleAlgV2List",
+              "optionCount": 9,
+              "upstreamActionType": 0,
+              "upstreamInputType": 7,
+              "uiVisible": true
+            },
+            {
+              "key": "annualTurnoverAlgV2",
+              "label": "年营业额",
+              "category": "经营状况",
+              "subCategory": "业务情况",
+              "control": "tier",
+              "hint": "基于企业公开数据分析得出",
+              "optionsSource": "annualTurnoverAlgV2List",
+              "optionCount": 11,
+              "upstreamActionType": 0,
+              "upstreamInputType": 7,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "开户行信息",
+          "entries": [
+            {
+              "key": "hasInvoiceBank",
+              "label": "有无开户信息",
+              "category": "经营状况",
+              "subCategory": "开户行信息",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "invoiceBankHeadName",
+              "label": "开户总行",
+              "category": "经营状况",
+              "subCategory": "开户行信息",
+              "control": "multiSelect",
+              "optionsSource": "invoiceBankHeadNameList",
+              "optionCount": 41,
+              "upstreamActionType": 3,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "invoiceBankBranchName",
+              "label": "开户行支行",
+              "category": "经营状况",
+              "subCategory": "开户行信息",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "融资信息",
+          "entries": [
+            {
+              "key": "financingNumber",
+              "label": "融资次数",
+              "category": "经营状况",
+              "subCategory": "融资信息",
+              "control": "numberRange",
+              "unit": "次",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "financingSeries",
+              "label": "当前融资轮次",
+              "category": "经营状况",
+              "subCategory": "融资信息",
+              "control": "multiSelect",
+              "optionsSource": "financingSeries",
+              "optionCount": 21,
+              "upstreamActionType": 3,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "榜单情况",
+          "entries": [
+            {
+              "key": "isTopEnterprise",
+              "label": "当前是否500强企业",
+              "category": "经营状况",
+              "subCategory": "榜单情况",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "hasStock",
+              "label": "是否上市企业",
+              "category": "经营状况",
+              "subCategory": "榜单情况",
+              "control": "toggle",
+              "hint": "包含新三板、新四板数据，如需细分可用“上市类型”筛选",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "stockType",
+              "label": "上市类型",
+              "category": "经营状况",
+              "subCategory": "榜单情况",
+              "control": "multiSelect",
+              "optionsSource": "stockType",
+              "optionCount": 6,
+              "upstreamActionType": 3,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "资质信息",
+          "entries": [
+            {
+              "key": "isHighTechEnt",
+              "label": "是否高新企业",
+              "category": "经营状况",
+              "subCategory": "资质信息",
+              "control": "relation",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "isSpecializedAndNewV2",
+              "label": "是否专精特新企业",
+              "category": "经营状况",
+              "subCategory": "资质信息",
+              "control": "relation",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "isSpecializedAndNewGiantV2",
+              "label": "是否专精特新小巨人企业",
+              "category": "经营状况",
+              "subCategory": "资质信息",
+              "control": "relation",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "isUnicornEnt",
+              "label": "是否独角兽企业",
+              "category": "经营状况",
+              "subCategory": "资质信息",
+              "control": "relation",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "isGazelleEnt",
+              "label": "是否瞪羚企业",
+              "category": "经营状况",
+              "subCategory": "资质信息",
+              "control": "relation",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "isLittleEagle",
+              "label": "是否雏鹰企业",
+              "category": "经营状况",
+              "subCategory": "资质信息",
+              "control": "relation",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "isTechLittleGiant",
+              "label": "是否科技小巨人企业",
+              "category": "经营状况",
+              "subCategory": "资质信息",
+              "control": "relation",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "isTechEnt",
+              "label": "是否科技型中小企业",
+              "category": "经营状况",
+              "subCategory": "资质信息",
+              "control": "relation",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "招投标信息",
+          "entries": [
+            {
+              "key": "hasBidding",
+              "label": "有无招投标",
+              "category": "经营状况",
+              "subCategory": "招投标信息",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "biddingAnncTitleList",
+              "label": "招投标项目标题",
+              "category": "经营状况",
+              "subCategory": "招投标信息",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "biddingRole",
+              "label": "招投标项目角色",
+              "category": "经营状况",
+              "subCategory": "招投标信息",
+              "control": "relation",
+              "optionsSource": "biddingRole",
+              "optionCount": 3,
+              "upstreamActionType": 3,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "biddingAnncPubTimeList",
+              "label": "招投标项目发布时间",
+              "category": "经营状况",
+              "subCategory": "招投标信息",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "biddingAnncTypeList",
+              "label": "招投标公告类型",
+              "category": "经营状况",
+              "subCategory": "招投标信息",
+              "control": "relation",
+              "optionsSource": "biddingAnncTypeList",
+              "optionCount": 6,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "工厂信息",
+          "entries": [
+            {
+              "key": "factoryArea",
+              "label": "厂房面积",
+              "category": "经营状况",
+              "subCategory": "工厂信息",
+              "control": "numberRange",
+              "unit": "平方米",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "factoryEmpNumber",
+              "label": "工厂员工",
+              "category": "经营状况",
+              "subCategory": "工厂信息",
+              "control": "numberRange",
+              "unit": "人",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "mainDeviceCount",
+              "label": "设备数量",
+              "category": "经营状况",
+              "subCategory": "工厂信息",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "factoryNature",
+              "label": "工厂性质",
+              "category": "经营状况",
+              "subCategory": "工厂信息",
+              "control": "multiSelect",
+              "optionsSource": "factoryNature",
+              "optionCount": 2,
+              "upstreamActionType": 3,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "useType",
+              "label": "厂房使用类型",
+              "category": "经营状况",
+              "subCategory": "工厂信息",
+              "control": "multiSelect",
+              "optionsSource": "useType",
+              "optionCount": 2,
+              "upstreamActionType": 3,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "税务信息",
+          "entries": [
+            {
+              "key": "hasTaxReg",
+              "label": "有无税务登记",
+              "category": "经营状况",
+              "subCategory": "税务信息",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "taxRegChangeTime",
+              "label": "税务登记变更时间",
+              "category": "经营状况",
+              "subCategory": "税务信息",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "资质证书",
+      "subCategories": [
+        {
+          "name": "证书",
+          "entries": [
+            {
+              "key": "hasCertificate",
+              "label": "有无证书",
+              "category": "资质证书",
+              "subCategory": "证书",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "certTypeList",
+              "label": "涵盖证书类别",
+              "category": "资质证书",
+              "subCategory": "证书",
+              "control": "relation",
+              "optionsSource": "certTypeList",
+              "optionCount": 29,
+              "upstreamActionType": 2,
+              "upstreamInputType": 2,
+              "uiVisible": true
+            },
+            {
+              "key": "certNameList",
+              "label": "证书名称",
+              "category": "资质证书",
+              "subCategory": "证书",
+              "control": "relation",
+              "optionsSource": "certNameList",
+              "upstreamActionType": 3,
+              "upstreamInputType": 2,
+              "uiVisible": true
+            },
+            {
+              "key": "certNumber",
+              "label": "证书数量",
+              "category": "资质证书",
+              "subCategory": "证书",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "certExpireTimeList",
+              "label": "证书有效截止日期",
+              "category": "资质证书",
+              "subCategory": "证书",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "certTypeListLastThreeMonth",
+              "label": "最近3个月内截止证书类别",
+              "category": "资质证书",
+              "subCategory": "证书",
+              "control": "select",
+              "optionsSource": "certTypeList",
+              "optionCount": 29,
+              "upstreamActionType": 2,
+              "upstreamInputType": 2,
+              "uiVisible": true
+            },
+            {
+              "key": "certTypeListLastSixMonth",
+              "label": "最近6个月内截止证书类别",
+              "category": "资质证书",
+              "subCategory": "证书",
+              "control": "select",
+              "optionsSource": "certTypeList",
+              "optionCount": 29,
+              "upstreamActionType": 2,
+              "upstreamInputType": 2,
+              "uiVisible": true
+            },
+            {
+              "key": "toBeRenewedCertTypeList",
+              "label": "待续办证书类别",
+              "category": "资质证书",
+              "subCategory": "证书",
+              "control": "select",
+              "optionsSource": "toBeRenewedCertTypeList",
+              "optionCount": 11,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "certFirstPublishTime",
+              "label": "初次获证日期",
+              "category": "资质证书",
+              "subCategory": "证书",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "certLastPublishTime",
+              "label": "最近获证日期",
+              "category": "资质证书",
+              "subCategory": "证书",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "certNumberThisYear",
+              "label": "本年度获证数量",
+              "category": "资质证书",
+              "subCategory": "证书",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "certAuthorityList",
+              "label": "发证机构",
+              "category": "资质证书",
+              "subCategory": "证书",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "certStandardList",
+              "label": "证书认证标准和技术要求",
+              "category": "资质证书",
+              "subCategory": "证书",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "certIdList",
+              "label": "证书编号",
+              "category": "资质证书",
+              "subCategory": "证书",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "行政许可",
+          "entries": [
+            {
+              "key": "hasLicenseList",
+              "label": "有无行政许可",
+              "category": "资质证书",
+              "subCategory": "行政许可",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "licenseContent",
+              "label": "许可内容",
+              "category": "资质证书",
+              "subCategory": "行政许可",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "licenseListCount",
+              "label": "行政许可数量",
+              "category": "资质证书",
+              "subCategory": "行政许可",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "licenseName",
+              "label": "许可文件名称",
+              "category": "资质证书",
+              "subCategory": "行政许可",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "licenseAuthority",
+              "label": "许可机关",
+              "category": "资质证书",
+              "subCategory": "行政许可",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "LicenseBeginDateList",
+              "label": "行政许可起始日期",
+              "category": "资质证书",
+              "subCategory": "行政许可",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "LicenseEndDateList",
+              "label": "行政许可截止日期",
+              "category": "资质证书",
+              "subCategory": "行政许可",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "税务资质",
+          "entries": [
+            {
+              "key": "hasTaxCreditRating",
+              "label": "是否A级纳税人",
+              "category": "资质证书",
+              "subCategory": "税务资质",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "taxCreditRatingYearList",
+              "label": "A级纳税人评价年份",
+              "category": "资质证书",
+              "subCategory": "税务资质",
+              "control": "select",
+              "optionsSource": "taxCreditRatingYearList",
+              "optionCount": 12,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "taxQualificationList",
+              "label": "税务资质类型",
+              "category": "资质证书",
+              "subCategory": "税务资质",
+              "control": "select",
+              "optionsSource": "taxQualificationList",
+              "optionCount": 4,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "进出口",
+          "entries": [
+            {
+              "key": "hasECRCreditRating",
+              "label": "有无进出口信用",
+              "category": "资质证书",
+              "subCategory": "进出口",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "ecrCreditType",
+              "label": "海关信用类型",
+              "category": "资质证书",
+              "subCategory": "进出口",
+              "control": "select",
+              "optionsSource": "ecrCreditType",
+              "optionCount": 4,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "ecrBusinessType",
+              "label": "海关登记经营类别",
+              "category": "资质证书",
+              "subCategory": "进出口",
+              "control": "select",
+              "optionsSource": "ecrBusinessType",
+              "optionCount": 11,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "ecrIndustry",
+              "label": "海关登记行业",
+              "category": "资质证书",
+              "subCategory": "进出口",
+              "control": "select",
+              "optionsSource": "ecrIndustry",
+              "optionCount": 42,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "标准信息",
+          "entries": [
+            {
+              "key": "hasStandard",
+              "label": "有无标准信息",
+              "category": "资质证书",
+              "subCategory": "标准信息",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "stdTitleList",
+              "label": "标准名称",
+              "category": "资质证书",
+              "subCategory": "标准信息",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "stdTypeList",
+              "label": "标准级别",
+              "category": "资质证书",
+              "subCategory": "标准信息",
+              "control": "select",
+              "optionsSource": "stdTypeList",
+              "optionCount": 3,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "stdCount",
+              "label": "标准数量",
+              "category": "资质证书",
+              "subCategory": "标准信息",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "stdLatestIssueDate",
+              "label": "标准信息最新发布时间",
+              "category": "资质证书",
+              "subCategory": "标准信息",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "媒体信息",
+      "subCategories": [
+        {
+          "name": "自媒体",
+          "entries": [
+            {
+              "key": "hasWeMedia",
+              "label": "有无自媒体",
+              "category": "媒体信息",
+              "subCategory": "自媒体",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "mediaName",
+              "label": "自媒体名称",
+              "category": "媒体信息",
+              "subCategory": "自媒体",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "hasWechat",
+              "label": "有无微信公众号",
+              "category": "媒体信息",
+              "subCategory": "自媒体",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "mediaCount",
+              "label": "微信公众号",
+              "category": "媒体信息",
+              "subCategory": "自媒体",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "hasWeiboOrg",
+              "label": "有无微博机构号",
+              "category": "媒体信息",
+              "subCategory": "自媒体",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "weiboOrgNumber",
+              "label": "机构微博",
+              "category": "媒体信息",
+              "subCategory": "自媒体",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "新闻",
+          "entries": [
+            {
+              "key": "hasNews",
+              "label": "有无新闻",
+              "category": "媒体信息",
+              "subCategory": "新闻",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "newsTitle",
+              "label": "新闻标题",
+              "category": "媒体信息",
+              "subCategory": "新闻",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "lastMonthNewsCount",
+              "label": "近一月新闻数量",
+              "category": "媒体信息",
+              "subCategory": "新闻",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "推广信息",
+      "subCategories": [
+        {
+          "name": "企业推广",
+          "entries": [
+            {
+              "key": "hasPrmt",
+              "label": "有无推广",
+              "category": "推广信息",
+              "subCategory": "企业推广",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "prmtSources",
+              "label": "推广渠道",
+              "category": "推广信息",
+              "subCategory": "企业推广",
+              "control": "keyword",
+              "optionsSource": "prmtSources",
+              "optionCount": 2,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "lastPrmtTime",
+              "label": "最后推广时间",
+              "category": "推广信息",
+              "subCategory": "企业推广",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "prmtLinksNumber",
+              "label": "推广链接数",
+              "category": "推广信息",
+              "subCategory": "企业推广",
+              "control": "numberRange",
+              "unit": "条",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "推广创意",
+          "entries": [
+            {
+              "key": "prmtText",
+              "label": "推广文案",
+              "category": "推广信息",
+              "subCategory": "推广创意",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "prmtKeys",
+              "label": "推广关键词",
+              "category": "推广信息",
+              "subCategory": "推广创意",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "prmtKeyLastMonth",
+              "label": "最近1个月推广关键词",
+              "category": "推广信息",
+              "subCategory": "推广创意",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "prmtKeysNumber",
+              "label": "推广关键词数",
+              "category": "推广信息",
+              "subCategory": "推广创意",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "推广竞品",
+          "entries": [
+            {
+              "key": "prmtCompetitorsNumber",
+              "label": "推广竞品数",
+              "category": "推广信息",
+              "subCategory": "推广竞品",
+              "control": "numberRange",
+              "unit": "家",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "产品信息",
+      "subCategories": [
+        {
+          "name": "电商信息",
+          "entries": [
+            {
+              "key": "ecShopProducts",
+              "label": "电商主营产品",
+              "category": "产品信息",
+              "subCategory": "电商信息",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "ecShopBrands",
+              "label": "电商主营品牌",
+              "category": "产品信息",
+              "subCategory": "电商信息",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "ecSources",
+              "label": "电商上架平台",
+              "category": "产品信息",
+              "subCategory": "电商信息",
+              "control": "select",
+              "optionsSource": "ecSources",
+              "optionCount": 7,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "ecShopItemCategories",
+              "label": "电商产品分类",
+              "category": "产品信息",
+              "subCategory": "电商信息",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "ecShopNameList",
+              "label": "电商店铺名称",
+              "category": "产品信息",
+              "subCategory": "电商信息",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "ecShopNumber",
+              "label": "电商店铺数量",
+              "category": "产品信息",
+              "subCategory": "电商信息",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "ecShopEarliestFoundTime",
+              "label": "电商店铺创建时间",
+              "category": "产品信息",
+              "subCategory": "电商信息",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "ecShopAvgRates",
+              "label": "电商店铺平均评分",
+              "category": "产品信息",
+              "subCategory": "电商信息",
+              "control": "numberRange",
+              "unit": "分",
+              "hint": "最高分为10分",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "ecShopItemCount",
+              "label": "电商店铺商品总数",
+              "category": "产品信息",
+              "subCategory": "电商信息",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "hasGoods",
+              "label": "有无商品",
+              "category": "产品信息",
+              "subCategory": "电商信息",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "goodsNumber",
+              "label": "商品数量",
+              "category": "产品信息",
+              "subCategory": "电商信息",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "goodsNameList",
+              "label": "商品名称",
+              "category": "产品信息",
+              "subCategory": "电商信息",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "品牌信息",
+          "entries": [
+            {
+              "key": "hasBrand",
+              "label": "有无品牌信息",
+              "category": "产品信息",
+              "subCategory": "品牌信息",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "brandNameList",
+              "label": "品牌名称",
+              "category": "产品信息",
+              "subCategory": "品牌信息",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "brandCount",
+              "label": "品牌数量",
+              "category": "产品信息",
+              "subCategory": "品牌信息",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "brandIndustryList",
+              "label": "品牌所属行业",
+              "category": "产品信息",
+              "subCategory": "品牌信息",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "brandProductList",
+              "label": "品牌主营产品",
+              "category": "产品信息",
+              "subCategory": "品牌信息",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "APP应用",
+          "entries": [
+            {
+              "key": "hasApplication",
+              "label": "有无应用",
+              "category": "产品信息",
+              "subCategory": "APP应用",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "appNames",
+              "label": "应用名称",
+              "category": "产品信息",
+              "subCategory": "APP应用",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "appDescList",
+              "label": "应用描述",
+              "category": "产品信息",
+              "subCategory": "APP应用",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "appNumber",
+              "label": "应用数量",
+              "category": "产品信息",
+              "subCategory": "APP应用",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "appClass",
+              "label": "应用分类",
+              "category": "产品信息",
+              "subCategory": "APP应用",
+              "control": "multiSelect",
+              "optionsSource": "appClass",
+              "optionCount": 20,
+              "upstreamActionType": 3,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "appStores",
+              "label": "应用上架平台",
+              "category": "产品信息",
+              "subCategory": "APP应用",
+              "control": "multiSelect",
+              "optionsSource": "appStores",
+              "optionCount": 9,
+              "upstreamActionType": 3,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "appAvgRate",
+              "label": "应用平均评分",
+              "category": "产品信息",
+              "subCategory": "APP应用",
+              "control": "numberRange",
+              "unit": "分",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "appTotalDownloadCount",
+              "label": "应用总下载量",
+              "category": "产品信息",
+              "subCategory": "APP应用",
+              "control": "numberRange",
+              "unit": "万次",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "appPublishTime",
+              "label": "最近发布时间",
+              "category": "产品信息",
+              "subCategory": "APP应用",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "appUpgradeTime",
+              "label": "最近更新时间",
+              "category": "产品信息",
+              "subCategory": "APP应用",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "风险信息",
+      "subCategories": [
+        {
+          "name": "经营异常",
+          "entries": [
+            {
+              "key": "hasAnomalyList",
+              "label": "有无经营异常",
+              "category": "风险信息",
+              "subCategory": "经营异常",
+              "control": "toggle",
+              "hint": "历史或当前有经营异常信息",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "isAnomaly",
+              "label": "当前是否被列入经营异常",
+              "category": "风险信息",
+              "subCategory": "经营异常",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "anomalyCreateDate",
+              "label": "最近经营异常列入日期",
+              "category": "风险信息",
+              "subCategory": "经营异常",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "currentAnomalyReason",
+              "label": "当前被列入经营异常原因",
+              "category": "风险信息",
+              "subCategory": "经营异常",
+              "control": "select",
+              "optionsSource": "currentAnomalyReason",
+              "optionCount": 3,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "anomalyCreateReason",
+              "label": "历史列入经营异常原因",
+              "category": "风险信息",
+              "subCategory": "经营异常",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "anomalyRemoveDate",
+              "label": "最近经营异常移出日期",
+              "category": "风险信息",
+              "subCategory": "经营异常",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "anomalyRemoveReason",
+              "label": "历史移出经营异常原因",
+              "category": "风险信息",
+              "subCategory": "经营异常",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "anomalyListCount",
+              "label": "经营异常数量",
+              "category": "风险信息",
+              "subCategory": "经营异常",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "行政处罚",
+          "entries": [
+            {
+              "key": "hasPunishment",
+              "label": "有无行政处罚",
+              "category": "风险信息",
+              "subCategory": "行政处罚",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "punishmentCount",
+              "label": "行政处罚数量",
+              "category": "风险信息",
+              "subCategory": "行政处罚",
+              "control": "numberRange",
+              "unit": "次",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "lastDicisionDate",
+              "label": "最近行政处罚决定日期",
+              "category": "风险信息",
+              "subCategory": "行政处罚",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "lastPunishmentDate",
+              "label": "最近行政处罚公示日期",
+              "category": "风险信息",
+              "subCategory": "行政处罚",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "punishmentTypeList",
+              "label": "违法行为类型",
+              "category": "风险信息",
+              "subCategory": "行政处罚",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "punishAuthorityList",
+              "label": "行政处罚决定机关",
+              "category": "风险信息",
+              "subCategory": "行政处罚",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "punishContentList",
+              "label": "行政处罚结果",
+              "category": "风险信息",
+              "subCategory": "行政处罚",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "立案信息",
+          "entries": [
+            {
+              "key": "hasCourtCase",
+              "label": "有无立案信息",
+              "category": "风险信息",
+              "subCategory": "立案信息",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "courtCaseNumber",
+              "label": "立案数量",
+              "category": "风险信息",
+              "subCategory": "立案信息",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "courtCaseCreateTimeList",
+              "label": "立案日期",
+              "category": "风险信息",
+              "subCategory": "立案信息",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "courtCaseNumberList",
+              "label": "立案案号",
+              "category": "风险信息",
+              "subCategory": "立案信息",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "法院公告",
+          "entries": [
+            {
+              "key": "hasCourtAnnouncement",
+              "label": "有无法院公告",
+              "category": "风险信息",
+              "subCategory": "法院公告",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "caTypeList",
+              "label": "法院公告类型",
+              "category": "风险信息",
+              "subCategory": "法院公告",
+              "control": "multiSelect",
+              "optionsSource": "caTypeList",
+              "optionCount": 9,
+              "upstreamActionType": 3,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "caPublishDateList",
+              "label": "法院公告日期",
+              "category": "风险信息",
+              "subCategory": "法院公告",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "caRelatedCaseNumberList",
+              "label": "法院公告关联案号",
+              "category": "风险信息",
+              "subCategory": "法院公告",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "开庭公告",
+          "entries": [
+            {
+              "key": "hasOpenCourtSessionAnnc",
+              "label": "有无开庭公告",
+              "category": "风险信息",
+              "subCategory": "开庭公告",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "openCourtSessionDateList",
+              "label": "案件开庭日期",
+              "category": "风险信息",
+              "subCategory": "开庭公告",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "openCourtSessionAddressList",
+              "label": "案件开庭地址",
+              "category": "风险信息",
+              "subCategory": "开庭公告",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "openCourtIdentities",
+              "label": "开庭公告身份",
+              "category": "风险信息",
+              "subCategory": "开庭公告",
+              "control": "select",
+              "optionsSource": "openCourtIdentities",
+              "optionCount": 4,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "openCourtCauses",
+              "label": "开庭公告案由",
+              "category": "风险信息",
+              "subCategory": "开庭公告",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "openCourtNumber",
+              "label": "开庭公告数量",
+              "category": "风险信息",
+              "subCategory": "开庭公告",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "裁判文书",
+          "entries": [
+            {
+              "key": "hasJudgmentDocument",
+              "label": "有无裁判文书",
+              "category": "风险信息",
+              "subCategory": "裁判文书",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "jdCaseOfActionList",
+              "label": "裁判文书案由",
+              "category": "风险信息",
+              "subCategory": "裁判文书",
+              "control": "relation",
+              "optionsSource": "jdCaseOfActionList",
+              "optionCount": 18,
+              "upstreamActionType": 3,
+              "upstreamInputType": 2,
+              "uiVisible": true
+            },
+            {
+              "key": "jdCaseOfActionDetailList",
+              "label": "裁判文书详细案由",
+              "category": "风险信息",
+              "subCategory": "裁判文书",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "jdCourtList",
+              "label": "裁判文书判决法院",
+              "category": "风险信息",
+              "subCategory": "裁判文书",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "jdPublishDateList",
+              "label": "裁判文书发布时间",
+              "category": "风险信息",
+              "subCategory": "裁判文书",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "jdNumber",
+              "label": "裁判文书数量",
+              "category": "风险信息",
+              "subCategory": "裁判文书",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "jdIdentities",
+              "label": "裁判文书身份",
+              "category": "风险信息",
+              "subCategory": "裁判文书",
+              "control": "select",
+              "optionsSource": "jdIdentities",
+              "optionCount": 9,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "jdCaseTypeList",
+              "label": "裁判文书案件类型",
+              "category": "风险信息",
+              "subCategory": "裁判文书",
+              "control": "select",
+              "optionsSource": "jdCaseTypeList",
+              "optionCount": 7,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "jdTypeList",
+              "label": "裁判文书文书类型",
+              "category": "风险信息",
+              "subCategory": "裁判文书",
+              "control": "keyword",
+              "optionsSource": "jdTypeList",
+              "optionCount": 6,
+              "upstreamActionType": 4,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "jdTrialRoundList",
+              "label": "裁判文书审理程序",
+              "category": "风险信息",
+              "subCategory": "裁判文书",
+              "control": "keyword",
+              "optionsSource": "jdTrialRoundList",
+              "optionCount": 9,
+              "upstreamActionType": 4,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "被执行人",
+          "entries": [
+            {
+              "key": "hasEnforcement",
+              "label": "有无被执行人",
+              "category": "风险信息",
+              "subCategory": "被执行人",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "efSubjectMoneyList",
+              "label": "执行标的金额",
+              "category": "风险信息",
+              "subCategory": "被执行人",
+              "control": "numberRange",
+              "unit": "元",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "efCaseCreateTimeList",
+              "label": "被执行人立案时间",
+              "category": "风险信息",
+              "subCategory": "被执行人",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "hasCurrentEf",
+              "label": "有无当前被执行人",
+              "category": "风险信息",
+              "subCategory": "被执行人",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "hasHistoryEf",
+              "label": "有无历史被执行人",
+              "category": "风险信息",
+              "subCategory": "被执行人",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "efHistoryCaseCreateTimeList",
+              "label": "历史被执行人立案时间",
+              "category": "风险信息",
+              "subCategory": "被执行人",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "efCaseNumberList",
+              "label": "被执行人案号",
+              "category": "风险信息",
+              "subCategory": "被执行人",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "失信被执行人",
+          "entries": [
+            {
+              "key": "hasEnforcementDishonest",
+              "label": "有无失信被执行人",
+              "category": "风险信息",
+              "subCategory": "失信被执行人",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "efDishonestCaseCreateTimeList",
+              "label": "失信被执行人立案时间",
+              "category": "风险信息",
+              "subCategory": "失信被执行人",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "efDishonestPublishTimeList",
+              "label": "失信被执行人发布时间",
+              "category": "风险信息",
+              "subCategory": "失信被执行人",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "hasCurrentDishonest",
+              "label": "有无当前失信被执行人",
+              "category": "风险信息",
+              "subCategory": "失信被执行人",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "hasHistoryDishonest",
+              "label": "有无历史失信被执行人",
+              "category": "风险信息",
+              "subCategory": "失信被执行人",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "efHistoryDishonestCaseCreateTimeList",
+              "label": "历史失信被执行人立案时间",
+              "category": "风险信息",
+              "subCategory": "失信被执行人",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "efDishonestCaseNumberList",
+              "label": "失信被执行人案号",
+              "category": "风险信息",
+              "subCategory": "失信被执行人",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "终本案件",
+          "entries": [
+            {
+              "key": "efTermMoneyProportion",
+              "label": "累计终本案件未履行比例",
+              "category": "风险信息",
+              "subCategory": "终本案件",
+              "control": "numberRange",
+              "unit": "百分比",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "efTermDefaultSubjectMoneyList",
+              "label": "终本案件未履行金额",
+              "category": "风险信息",
+              "subCategory": "终本案件",
+              "control": "numberRange",
+              "unit": "元",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "efTermExecutiveCourtList",
+              "label": "终本案件执行法院",
+              "category": "风险信息",
+              "subCategory": "终本案件",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "efTermDateList",
+              "label": "终本案件终本日期",
+              "category": "风险信息",
+              "subCategory": "终本案件",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "efTermDefaultSubjectMoneyTotal",
+              "label": "终本案件未履行总金额",
+              "category": "风险信息",
+              "subCategory": "终本案件",
+              "control": "numberRange",
+              "unit": "元",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "hasCurrentTerm",
+              "label": "有无当前终本案件",
+              "category": "风险信息",
+              "subCategory": "终本案件",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "hasHistoryTerm",
+              "label": "有无历史终本案件",
+              "category": "风险信息",
+              "subCategory": "终本案件",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "efHistoryTermDateList",
+              "label": "历史终本案件终本日期",
+              "category": "风险信息",
+              "subCategory": "终本案件",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "efTermNumber",
+              "label": "终本案件数量",
+              "category": "风险信息",
+              "subCategory": "终本案件",
+              "control": "numberRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "efTermCaseNumberList",
+              "label": "终本案件案号",
+              "category": "风险信息",
+              "subCategory": "终本案件",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "限制高消费",
+          "entries": [
+            {
+              "key": "hasEnforcementLimited",
+              "label": "有无限制高消费",
+              "category": "风险信息",
+              "subCategory": "限制高消费",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "efLimitedPublishTimeList",
+              "label": "限制高消费发布时间",
+              "category": "风险信息",
+              "subCategory": "限制高消费",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "hasCurrentLimited",
+              "label": "有无当前限制高消费",
+              "category": "风险信息",
+              "subCategory": "限制高消费",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "hasHistoryLimited",
+              "label": "有无历史限制高消费",
+              "category": "风险信息",
+              "subCategory": "限制高消费",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "efHistoryLimitedPublishTimeList",
+              "label": "历史限制高消费发布时间",
+              "category": "风险信息",
+              "subCategory": "限制高消费",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "efLimitedPersonCaseNumberList",
+              "label": "限制高消费案号",
+              "category": "风险信息",
+              "subCategory": "限制高消费",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "申请执行",
+          "entries": [
+            {
+              "key": "isApplicant",
+              "label": "有无申请执行",
+              "category": "风险信息",
+              "subCategory": "申请执行",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "applicantNum",
+              "label": "申请执行数量",
+              "category": "风险信息",
+              "subCategory": "申请执行",
+              "control": "numberRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "efInvolvedAmountList",
+              "label": "申请执行涉案金额",
+              "category": "风险信息",
+              "subCategory": "申请执行",
+              "control": "numberRange",
+              "unit": "元人民币",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "破产重整",
+          "entries": [
+            {
+              "key": "hasBr",
+              "label": "有无破产重整案件",
+              "category": "风险信息",
+              "subCategory": "破产重整",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "brIdentities",
+              "label": "破产重整案件身份",
+              "category": "风险信息",
+              "subCategory": "破产重整",
+              "control": "select",
+              "optionsSource": "brIdentitiesList",
+              "optionCount": 2,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "brHandlingCourtList",
+              "label": "破产重整办理法院",
+              "category": "风险信息",
+              "subCategory": "破产重整",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "出质抵押",
+          "entries": [
+            {
+              "key": "hasEquityPledge",
+              "label": "有无股权出质",
+              "category": "风险信息",
+              "subCategory": "出质抵押",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "hasIPRPledge",
+              "label": "有无知识产权出质",
+              "category": "风险信息",
+              "subCategory": "出质抵押",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "hasMortgage",
+              "label": "有无动产抵押",
+              "category": "风险信息",
+              "subCategory": "出质抵押",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "严重风险",
+          "entries": [
+            {
+              "key": "hasIllegalInfo",
+              "label": "有无严重违法",
+              "category": "风险信息",
+              "subCategory": "严重风险",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "hasJudicialAssistance",
+              "label": "有无司法协助",
+              "category": "风险信息",
+              "subCategory": "严重风险",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "hasGovProcurementIllegal",
+              "label": "有无政府采购严重违法",
+              "category": "风险信息",
+              "subCategory": "严重风险",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "税务异常",
+          "entries": [
+            {
+              "key": "taxAbnormalList",
+              "label": "税务异常类型",
+              "category": "风险信息",
+              "subCategory": "税务异常",
+              "control": "select",
+              "optionsSource": "taxAbnormalList",
+              "optionCount": 4,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "简易注销",
+          "entries": [
+            {
+              "key": "hasCsc",
+              "label": "有无简易注销",
+              "category": "风险信息",
+              "subCategory": "简易注销",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "cscPublishDateList",
+              "label": "简易注销公告发布日期",
+              "category": "风险信息",
+              "subCategory": "简易注销",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "注销备案",
+          "entries": [
+            {
+              "key": "hasCcn",
+              "label": "有无注销备案",
+              "category": "风险信息",
+              "subCategory": "注销备案",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "creditorPublishDateList",
+              "label": "债权人公告发布日期",
+              "category": "风险信息",
+              "subCategory": "注销备案",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "减资公告",
+          "entries": [
+            {
+              "key": "hasEntAnnc",
+              "label": "有无减资公告",
+              "category": "风险信息",
+              "subCategory": "减资公告",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "entaAnnounceDateList",
+              "label": "减资公告发布日期",
+              "category": "风险信息",
+              "subCategory": "减资公告",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "entAnncPreRegCapitalList",
+              "label": "减资前注册金额",
+              "category": "风险信息",
+              "subCategory": "减资公告",
+              "control": "numberRange",
+              "unit": "万元人民币",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "entAnncPostRegCapitalList",
+              "label": "减资后注册金额",
+              "category": "风险信息",
+              "subCategory": "减资公告",
+              "control": "numberRange",
+              "unit": "万元人民币",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "知识产权",
+      "subCategories": [
+        {
+          "name": "商标",
+          "entries": [
+            {
+              "key": "hasTrademark",
+              "label": "有无商标",
+              "category": "知识产权",
+              "subCategory": "商标",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "tmStatusV2",
+              "label": "商标状态",
+              "category": "知识产权",
+              "subCategory": "商标",
+              "control": "select",
+              "optionsSource": "tmStatusV2",
+              "optionCount": 10,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "operBrandList",
+              "label": "商标名称",
+              "category": "知识产权",
+              "subCategory": "商标",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "tmInternationalClass",
+              "label": "商标国际分类",
+              "category": "知识产权",
+              "subCategory": "商标",
+              "control": "relation",
+              "optionsSource": "tmInternationalClassList",
+              "optionCount": 45,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "tmApplicationTime",
+              "label": "商标申请日期",
+              "category": "知识产权",
+              "subCategory": "商标",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "tmSpecialTimeList",
+              "label": "商标专用权结束日期",
+              "category": "知识产权",
+              "subCategory": "商标",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "tmServiceDetail",
+              "label": "商标商品服务",
+              "category": "知识产权",
+              "subCategory": "商标",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "enterpriseTmAddressChange",
+              "label": "商标地址待变更",
+              "category": "知识产权",
+              "subCategory": "商标",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "tmValidNumber",
+              "label": "有效状态商标数量",
+              "category": "知识产权",
+              "subCategory": "商标",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "tmInvalidNumber",
+              "label": "无效状态商标数量",
+              "category": "知识产权",
+              "subCategory": "商标",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "专利",
+          "entries": [
+            {
+              "key": "hasPatent",
+              "label": "有无专利",
+              "category": "知识产权",
+              "subCategory": "专利",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "patentTypeList",
+              "label": "涵盖专利类别",
+              "category": "知识产权",
+              "subCategory": "专利",
+              "control": "relation",
+              "optionsSource": "patentTypeList",
+              "optionCount": 4,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "patentNameList",
+              "label": "专利名称",
+              "category": "知识产权",
+              "subCategory": "专利",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "patentNumber",
+              "label": "专利数量",
+              "category": "知识产权",
+              "subCategory": "专利",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "calPatentLegalStatusList",
+              "label": "专利法律状态",
+              "category": "知识产权",
+              "subCategory": "专利",
+              "control": "relation",
+              "optionsSource": "calPatentLegalStatusList",
+              "optionCount": 37,
+              "upstreamActionType": 2,
+              "upstreamInputType": 4,
+              "uiVisible": true
+            },
+            {
+              "key": "patentApplicationDateList",
+              "label": "专利申请日期",
+              "category": "知识产权",
+              "subCategory": "专利",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "patentApplicationNumberThisYear",
+              "label": "最近一年申请专利数量",
+              "category": "知识产权",
+              "subCategory": "专利",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            },
+            {
+              "key": "patentPublicationDateList",
+              "label": "专利公开日期",
+              "category": "知识产权",
+              "subCategory": "专利",
+              "control": "dateRange",
+              "upstreamActionType": 0,
+              "upstreamInputType": 6,
+              "uiVisible": true
+            },
+            {
+              "key": "patentPublicationNumberThisYear",
+              "label": "最近一年公开专利数量",
+              "category": "知识产权",
+              "subCategory": "专利",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "软著",
+          "entries": [
+            {
+              "key": "hasSR",
+              "label": "有无软著",
+              "category": "知识产权",
+              "subCategory": "软著",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "srName",
+              "label": "软件名称",
+              "category": "知识产权",
+              "subCategory": "软著",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "srNumber",
+              "label": "软著数量",
+              "category": "知识产权",
+              "subCategory": "软著",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            }
+          ]
+        },
+        {
+          "name": "作品著作",
+          "entries": [
+            {
+              "key": "hasCR",
+              "label": "有无作品著作权",
+              "category": "知识产权",
+              "subCategory": "作品著作",
+              "control": "toggle",
+              "upstreamActionType": 1,
+              "uiVisible": true
+            },
+            {
+              "key": "crName",
+              "label": "作品名称",
+              "category": "知识产权",
+              "subCategory": "作品著作",
+              "control": "keyword",
+              "upstreamActionType": 4,
+              "upstreamInputType": 3,
+              "uiVisible": true
+            },
+            {
+              "key": "crNumber",
+              "label": "作品著作权数量",
+              "category": "知识产权",
+              "subCategory": "作品著作",
+              "control": "numberRange",
+              "unit": "个",
+              "upstreamActionType": 0,
+              "upstreamInputType": 5,
+              "uiVisible": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "探迹线索数据",
+      "subCategories": []
+    }
+  ],
+  "hiddenEntries": [
+    {
+      "key": "industries",
+      "label": "所属行业（旧）",
+      "category": "工商信息",
+      "subCategory": "基础信息",
+      "control": "multiSelect",
+      "upstreamActionType": 3,
+      "upstreamInputType": 2,
+      "uiVisible": false
+    },
+    {
+      "key": "hasCooperation",
+      "label": "hasCooperation",
+      "category": "工商信息",
+      "subCategory": "企业关系",
+      "control": "keyword",
+      "uiVisible": false
+    },
+    {
+      "key": "cooperationRoles",
+      "label": "cooperationRoles",
+      "category": "工商信息",
+      "subCategory": "企业关系",
+      "control": "keyword",
+      "uiVisible": false
+    },
+    {
+      "key": "hasVerifiedContact",
+      "label": "hasVerifiedContact",
+      "category": "联系方式",
+      "subCategory": "标签信息",
+      "control": "keyword",
+      "uiVisible": false
+    },
+    {
+      "key": "businessKeywords",
+      "label": "业务关键词",
+      "category": "经营状况",
+      "subCategory": "业务情况",
+      "control": "keyword",
+      "upstreamActionType": 4,
+      "upstreamInputType": 3,
+      "uiVisible": false
+    },
+    {
+      "key": "calEnterpriseScaleLevel",
+      "label": "公司规模（旧）",
+      "category": "经营状况",
+      "subCategory": "业务情况",
+      "control": "multiSelect",
+      "hint": "基于企业公开数据分析得出",
+      "upstreamActionType": 3,
+      "upstreamInputType": 4,
+      "uiVisible": false
+    },
+    {
+      "key": "annualTurnover",
+      "label": "年营业额（旧）",
+      "category": "经营状况",
+      "subCategory": "业务情况",
+      "control": "multiSelect",
+      "hint": "基于企业公开数据分析得出",
+      "upstreamActionType": 3,
+      "upstreamInputType": 4,
+      "uiVisible": false
+    },
+    {
+      "key": "hasFair",
+      "label": "hasFair",
+      "category": "经营状况",
+      "subCategory": "展会信息",
+      "control": "keyword",
+      "uiVisible": false
+    },
+    {
+      "key": "fairTimes",
+      "label": "fairTimes",
+      "category": "经营状况",
+      "subCategory": "展会信息",
+      "control": "keyword",
+      "uiVisible": false
+    },
+    {
+      "key": "fairBeginTime",
+      "label": "fairBeginTime",
+      "category": "经营状况",
+      "subCategory": "展会信息",
+      "control": "keyword",
+      "uiVisible": false
+    },
+    {
+      "key": "fairName",
+      "label": "fairName",
+      "category": "经营状况",
+      "subCategory": "展会信息",
+      "control": "keyword",
+      "uiVisible": false
+    }
+  ],
+  "uncategorizedEntries": [
+    {
+      "key": "operStatus",
+      "label": "营业状态_old",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "multiSelect",
+      "optionsSource": "operStatus",
+      "upstreamActionType": 3,
+      "upstreamInputType": 4,
+      "uiVisible": true
+    },
+    {
+      "key": "convertCount",
+      "label": "解锁次数",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "numberRange",
+      "upstreamActionType": 0,
+      "upstreamInputType": 5,
+      "uiVisible": true
+    },
+    {
+      "key": "hasConvert",
+      "label": "有无被解锁",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "toggle",
+      "upstreamActionType": 1,
+      "uiVisible": true
+    },
+    {
+      "key": "certStaffTypeList",
+      "label": "注册人员类别",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "relation",
+      "optionsSource": "certStaffTypeList",
+      "upstreamActionType": 2,
+      "upstreamInputType": 4,
+      "uiVisible": true
+    },
+    {
+      "key": "certStaffMajorList",
+      "label": "注册人员专业",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "relation",
+      "optionsSource": "certStaffMajorList",
+      "upstreamActionType": 2,
+      "upstreamInputType": 4,
+      "uiVisible": true
+    },
+    {
+      "key": "hasOwingTax",
+      "label": "有无欠税公告",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "toggle",
+      "upstreamActionType": 1,
+      "uiVisible": true
+    },
+    {
+      "key": "owingTaxDateList",
+      "label": "欠税公告发布时间",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "dateRange",
+      "upstreamActionType": 0,
+      "upstreamInputType": 6,
+      "uiVisible": true
+    },
+    {
+      "key": "owingTaxTypeList",
+      "label": "欠税税种",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "select",
+      "optionsSource": "owingTaxTypeList",
+      "upstreamActionType": 2,
+      "upstreamInputType": 4,
+      "uiVisible": true
+    },
+    {
+      "key": "owingTaxAmountList",
+      "label": "欠税余额",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "numberRange",
+      "upstreamActionType": 0,
+      "upstreamInputType": 5,
+      "uiVisible": true
+    },
+    {
+      "key": "owingTaxAmountRecentList",
+      "label": "最新发生的欠税金额",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "numberRange",
+      "upstreamActionType": 0,
+      "upstreamInputType": 5,
+      "uiVisible": true
+    },
+    {
+      "key": "isOwingTaxCurrent",
+      "label": "当前是否欠税",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "toggle",
+      "upstreamActionType": 1,
+      "uiVisible": true
+    },
+    {
+      "key": "isAbnormal",
+      "label": "当前是否非正常户",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "toggle",
+      "upstreamActionType": 1,
+      "uiVisible": true
+    },
+    {
+      "key": "tpAbnormalDateList",
+      "label": "非正常户认定日期",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "dateRange",
+      "upstreamActionType": 0,
+      "upstreamInputType": 6,
+      "uiVisible": true
+    },
+    {
+      "key": "hasSeriousTaxIllegal",
+      "label": "有无重大税收违法",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "toggle",
+      "upstreamActionType": 1,
+      "uiVisible": true
+    },
+    {
+      "key": "tpLatestIllegalPublishDate",
+      "label": "最新税收违法发布时间",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "dateRange",
+      "upstreamActionType": 0,
+      "upstreamInputType": 6,
+      "uiVisible": true
+    },
+    {
+      "key": "caseTypeList",
+      "label": "税收违法案件性质",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "select",
+      "optionsSource": "caseTypeList",
+      "upstreamActionType": 2,
+      "upstreamInputType": 4,
+      "uiVisible": true
+    },
+    {
+      "key": "registerNumber",
+      "label": "注册人员数量",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "numberRange",
+      "upstreamActionType": 0,
+      "upstreamInputType": 5,
+      "uiVisible": true
+    },
+    {
+      "key": "revokeReason",
+      "label": "注销原因",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "keyword",
+      "upstreamActionType": 4,
+      "upstreamInputType": 3,
+      "uiVisible": true
+    },
+    {
+      "key": "deactivateReason",
+      "label": "吊销原因",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "keyword",
+      "upstreamActionType": 4,
+      "upstreamInputType": 3,
+      "uiVisible": true
+    },
+    {
+      "key": "brPublishDateList",
+      "label": "破产重整公开日期",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "dateRange",
+      "upstreamActionType": 0,
+      "upstreamInputType": 6,
+      "uiVisible": true
+    },
+    {
+      "key": "homepageReachability",
+      "label": "近期是否有效网站",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "toggle",
+      "upstreamActionType": 1,
+      "uiVisible": true
+    },
+    {
+      "key": "hasHomepageVerified",
+      "label": "近期验证为官网",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "toggle",
+      "upstreamActionType": 1,
+      "uiVisible": true
+    },
+    {
+      "key": "isBranch",
+      "label": "是否分支机构",
+      "category": "未分类",
+      "subCategory": "",
+      "control": "toggle",
+      "upstreamActionType": 11,
+      "uiVisible": true
+    }
+  ]
+}

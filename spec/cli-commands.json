@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "1.0",
+  "commands": [
+    {
+      "command": "tanji health",
+      "description": "健康检查",
+      "example": "tanji health",
+      "operationId": "health.get"
+    },
+    {
+      "command": "tanji status",
+      "description": "查看登录态与额度",
+      "example": "tanji status",
+      "operationId": "status.get"
+    },
+    {
+      "command": "tanji login",
+      "description": "登录探迹（--interactive 人工处理验证码）",
+      "example": "tanji login --interactive",
+      "operationId": "session.login"
+    },
+    {
+      "command": "tanji search name",
+      "description": "名称搜索",
+      "example": "tanji search name --name 团车 --field name",
+      "operationId": "search.name"
+    },
+    {
+      "command": "tanji search advance",
+      "description": "高级筛选（--filter <json> 或 --filter-file <path>）",
+      "example": "tanji search advance --filter '{\"relation\":\"all\",\"conditions\":[{\"key\":\"industriesV2\",\"op\":\"anyOf\",\"value\":[\"制造业\"]}]}'",
+      "operationId": "search.advance"
+    },
+    {
+      "command": "tanji companies list",
+      "description": "按 queryId 翻页",
+      "example": "tanji companies list --query-id q_20261109_ab12cd --page 2",
+      "operationId": "companies.list"
+    },
+    {
+      "command": "tanji companies detail",
+      "description": "企业详情",
+      "example": "tanji companies detail --id 37623000277f335b",
+      "operationId": "companies.detail"
+    },
+    {
+      "command": "tanji contacts",
+      "description": "企业联系人",
+      "example": "tanji contacts --id 37623000277f335b",
+      "operationId": "contacts.list"
+    },
+    {
+      "command": "tanji unlock",
+      "description": "解锁企业（--confirm）",
+      "example": "tanji unlock --id 37623000277f335b --confirm [--with-contacts] [--with-quota]",
+      "operationId": "companies.unlock"
+    },
+    {
+      "command": "tanji accounts list",
+      "description": "账号列表与运行状态",
+      "example": "tanji accounts list",
+      "operationId": "accounts.list"
+    },
+    {
+      "command": "tanji cache stats",
+      "description": "缓存统计",
+      "example": "tanji cache stats",
+      "operationId": "cache.stats"
+    },
+    {
+      "command": "tanji cache clear",
+      "description": "清缓存",
+      "example": "tanji cache clear --all",
+      "operationId": "cache.clear"
+    },
+    {
+      "command": "tanji filters registry",
+      "description": "筛选条件注册表",
+      "example": "tanji filters registry",
+      "operationId": "filters.registry"
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "type": "object",
+  "properties": {
+    "contactId": {
+      "description": "探迹联系人内部 ID（解密后的 _id）",
+      "type": "string"
+    },
+    "name": {
+      "description": "联系人姓名（可能脱敏，如“闻*”）",
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/$defs/ContactType"
+    },
+    "value": {
+      "type": "string",
+      "minLength": 1,
+      "description": "手机号/固话/邮箱（解锁后为明文）"
+    },
+    "masked": {
+      "default": false,
+      "description": "是否为掩码（未解锁时 true）",
+      "type": "boolean"
+    },
+    "isKeyLead": {
+      "description": "是否关键联系人",
+      "type": "boolean"
+    },
+    "isHighFreq": {
+      "type": "boolean"
+    },
+    "department": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    },
+    "source": {
+      "description": "来源，如 政务公示平台/年报/官网",
+      "type": "string"
+    },
+    "sourceCategory": {
+      "type": "string"
+    },
+    "tags": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "followStatus": {
+      "description": "跟进状态，0=未跟进",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "unlocked": {
+      "type": "boolean"
+    },
+    "hidden": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "type",
+    "value"
+  ],
+  "description": "联系人条目",
+  "$defs": {
+    "ContactItem": {
+      "type": "object",
+      "properties": {
+        "contactId": {
+          "description": "探迹联系人内部 ID（解密后的 _id）",
+          "type": "string"
+        },
+        "name": {
+          "description": "联系人姓名（可能脱敏，如“闻*”）",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/$defs/ContactType"
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1,
+          "description": "手机号/固话/邮箱（解锁后为明文）"
+        },
+        "masked": {
+          "default": false,
+          "description": "是否为掩码（未解锁时 true）",
+          "type": "boolean"
+        },
+        "isKeyLead": {
+          "description": "是否关键联系人",
+          "type": "boolean"
+        },
+        "isHighFreq": {
+          "type": "boolean"
+        },
+        "department": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "source": {
+          "description": "来源，如 政务公示平台/年报/官网",
+          "type": "string"
+        },
+        "sourceCategory": {
+          "type": "string"
+        },
+        "tags": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "followStatus": {
+          "description": "跟进状态，0=未跟进",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "unlocked": {
+          "type": "boolean"
+        },
+        "hidden": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "value"
+      ],
+      "description": "联系人条目"
+    },
+    "ContactType": {
+      "type": "string",
+      "enum": [
+        "mobile",
+        "phone",
+        "email",
+        "other"
+      ],
+      "description": "联系方式类型：mobile=手机，phone=固话，email=邮箱"
+    }
+  }
+}

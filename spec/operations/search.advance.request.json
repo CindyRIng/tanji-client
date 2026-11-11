@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "properties": {
+    "filters": {
+      "$ref": "#/$defs/__schema0"
+    },
+    "page": {
+      "default": 1,
+      "description": "页码，从 1 开始",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "pageSize": {
+      "default": 20,
+      "description": "每页条数，1-100",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "maxPages": {
+      "default": 5,
+      "description": "单次任务最大翻页数，防风控",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 50
+    },
+    "sort": {
+      "$ref": "#/$defs/SortSpec"
+    },
+    "refresh": {
+      "default": false,
+      "description": "true=忽略缓存强制请求上游",
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}

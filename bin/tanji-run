@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# 通过共享 cloak-env 的 FHS 环境运行 tanji-client
+# （供 systemd / daemon / 全局 tanji 命令调用）
+set -euo pipefail
+SELF="$(readlink -f "${BASH_SOURCE[0]}")"
+ROOT="$(cd "$(dirname "$SELF")/.." && pwd)"
+CLOAK_ENV="${CLOAK_ENV:-/home/songqian/cloak-env}"
+cd "$ROOT"
+exec "$CLOAK_ENV/bin/cloak-run" node dist/main.js "$@"

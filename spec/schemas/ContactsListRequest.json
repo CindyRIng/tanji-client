@@ -1,0 +1,62 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "企业 ID（_id）"
+    },
+    "refresh": {
+      "default": false,
+      "type": "boolean"
+    },
+    "types": {
+      "default": [],
+      "description": "过滤联系人类型，空=全部",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "mobile",
+          "phone",
+          "email"
+        ]
+      }
+    }
+  },
+  "required": [
+    "id"
+  ],
+  "$defs": {
+    "ContactsListRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "企业 ID（_id）"
+        },
+        "refresh": {
+          "default": false,
+          "type": "boolean"
+        },
+        "types": {
+          "default": [],
+          "description": "过滤联系人类型，空=全部",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "mobile",
+              "phone",
+              "email"
+            ]
+          }
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  }
+}

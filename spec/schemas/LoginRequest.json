@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "properties": {
+    "interactive": {
+      "default": false,
+      "description": "true=启动可见浏览器人工登录；false=用保存的凭据自动登录",
+      "type": "boolean"
+    },
+    "force": {
+      "default": false,
+      "description": "强制重新登录（即使当前已登录）",
+      "type": "boolean"
+    }
+  },
+  "$defs": {
+    "LoginRequest": {
+      "type": "object",
+      "properties": {
+        "interactive": {
+          "default": false,
+          "description": "true=启动可见浏览器人工登录；false=用保存的凭据自动登录",
+          "type": "boolean"
+        },
+        "force": {
+          "default": false,
+          "description": "强制重新登录（即使当前已登录）",
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

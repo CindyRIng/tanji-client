@@ -1,0 +1,259 @@
+{
+  "type": "object",
+  "properties": {
+    "filters": {
+      "$ref": "#/$defs/__schema0"
+    },
+    "page": {
+      "default": 1,
+      "description": "页码，从 1 开始",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "pageSize": {
+      "default": 20,
+      "description": "每页条数，1-100",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "maxPages": {
+      "default": 5,
+      "description": "单次任务最大翻页数，防风控",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 50
+    },
+    "sort": {
+      "$ref": "#/$defs/SortSpec"
+    },
+    "refresh": {
+      "default": false,
+      "description": "true=忽略缓存强制请求上游",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "filters"
+  ],
+  "$defs": {
+    "SearchAdvanceRequest": {
+      "type": "object",
+      "properties": {
+        "filters": {
+          "$ref": "#/$defs/__schema0"
+        },
+        "page": {
+          "default": 1,
+          "description": "页码，从 1 开始",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "pageSize": {
+          "default": 20,
+          "description": "每页条数，1-100",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "maxPages": {
+          "default": 5,
+          "description": "单次任务最大翻页数，防风控",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50
+        },
+        "sort": {
+          "$ref": "#/$defs/SortSpec"
+        },
+        "refresh": {
+          "default": false,
+          "description": "true=忽略缓存强制请求上游",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "filters"
+      ]
+    },
+    "__schema0": {
+      "$ref": "#/$defs/FilterGroup"
+    },
+    "FilterGroup": {
+      "type": "object",
+      "properties": {
+        "relation": {
+          "default": "all",
+          "description": "all=全部满足，any=任一满足",
+          "type": "string",
+          "enum": [
+            "all",
+            "any"
+          ]
+        },
+        "conditions": {
+          "default": [],
+          "maxItems": 50,
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FilterCondition"
+          }
+        },
+        "groups": {
+          "default": [],
+          "description": "嵌套条件组（最多 5 组）",
+          "maxItems": 5,
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema0"
+          }
+        }
+      },
+      "description": "条件组（所有/任一）"
+    },
+    "FilterCondition": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_.]{0,63}$",
+          "description": "条件字段 key，如 industriesV2 / regCapitalRmb / name"
+        },
+        "op": {
+          "$ref": "#/$defs/FilterOp"
+        },
+        "value": {
+          "$ref": "#/$defs/FilterValue"
+        },
+        "negated": {
+          "default": false,
+          "description": "取反（NOT）",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "key",
+        "op",
+        "value"
+      ],
+      "description": "单条筛选条件"
+    },
+    "FilterOp": {
+      "type": "string",
+      "enum": [
+        "eq",
+        "anyOf",
+        "contains",
+        "range",
+        "boolean",
+        "preset",
+        "exists",
+        "notExists",
+        "custom"
+      ]
+    },
+    "FilterValue": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": [
+              "string",
+              "number",
+              "boolean"
+            ]
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "min": {
+              "type": [
+                "number",
+                "string"
+              ]
+            },
+            "max": {
+              "type": [
+                "number",
+                "string"
+              ]
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/__schema1"
+        }
+      ]
+    },
+    "__schema1": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema1"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema1"
+          }
+        }
+      ]
+    },
+    "SortSpec": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "$ref": "#/$defs/SortField"
+        },
+        "direction": {
+          "default": "desc",
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        }
+      }
+    },
+    "SortField": {
+      "default": "score",
+      "type": "string",
+      "enum": [
+        "score",
+        "name",
+        "regCapital",
+        "foundTime",
+        "contactCount"
+      ]
+    }
+  }
+}

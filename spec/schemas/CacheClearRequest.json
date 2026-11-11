@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "properties": {
+    "prefix": {
+      "description": "按 key/企业 ID 前缀清理，空=全部",
+      "type": "string"
+    },
+    "all": {
+      "default": false,
+      "description": "true=清空全部缓存",
+      "type": "boolean"
+    }
+  },
+  "$defs": {
+    "CacheClearRequest": {
+      "type": "object",
+      "properties": {
+        "prefix": {
+          "description": "按 key/企业 ID 前缀清理，空=全部",
+          "type": "string"
+        },
+        "all": {
+          "default": false,
+          "description": "true=清空全部缓存",
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

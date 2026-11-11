@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8,32}$",
+      "description": "探迹企业 ID（响应中的 _id）"
+    },
+    "refresh": {
+      "type": "string",
+      "enum": [
+        "true",
+        "false"
+      ]
+    },
+    "sections": {
+      "description": "逗号分隔：basic,detail,holders,members,invests,branches,alterations；空=完整",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

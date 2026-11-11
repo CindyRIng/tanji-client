@@ -1,0 +1,775 @@
+{
+  "schemaVersion": "1.0",
+  "transport": "stdio",
+  "tools": [
+    {
+      "name": "tanji_health",
+      "description": "查看 tanji-client 进程、浏览器、缓存健康状态",
+      "operationId": "health.get",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "tanji_status",
+      "description": "查看登录态与剩余日/月额度；调用搜索/解锁前应先检查",
+      "operationId": "status.get",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "tanji_session_login",
+      "description": "启动浏览器并登录探迹（可能触发验证码，需人工）",
+      "operationId": "session.login",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "interactive": {
+            "default": false,
+            "description": "true=启动可见浏览器人工登录；false=用保存的凭据自动登录",
+            "type": "boolean"
+          },
+          "force": {
+            "default": false,
+            "description": "强制重新登录（即使当前已登录）",
+            "type": "boolean"
+          }
+        },
+        "$defs": {
+          "LoginRequest": {
+            "type": "object",
+            "properties": {
+              "interactive": {
+                "default": false,
+                "description": "true=启动可见浏览器人工登录；false=用保存的凭据自动登录",
+                "type": "boolean"
+              },
+              "force": {
+                "default": false,
+                "description": "强制重新登录（即使当前已登录）",
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "tanji_search_name",
+      "description": "企业查询：按关键词搜索，field 指定命中范围（name/legalRepresentative/address/socialCreditCode/contact）",
+      "operationId": "search.name",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "description": "企业名称/人名/地址/统一码/联系方式关键词"
+          },
+          "field": {
+            "$ref": "#/$defs/SearchField"
+          },
+          "page": {
+            "default": 1,
+            "description": "页码，从 1 开始",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "pageSize": {
+            "default": 20,
+            "description": "每页条数，1-100",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "maxPages": {
+            "default": 5,
+            "description": "单次任务最大翻页数，防风控",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 50
+          },
+          "sort": {
+            "$ref": "#/$defs/SortSpec"
+          },
+          "refresh": {
+            "default": false,
+            "description": "true=忽略缓存强制请求上游",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "$defs": {
+          "SearchNameRequest": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200,
+                "description": "企业名称/人名/地址/统一码/联系方式关键词"
+              },
+              "field": {
+                "$ref": "#/$defs/SearchField"
+              },
+              "page": {
+                "default": 1,
+                "description": "页码，从 1 开始",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9007199254740991
+              },
+              "pageSize": {
+                "default": 20,
+                "description": "每页条数，1-100",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100
+              },
+              "maxPages": {
+                "default": 5,
+                "description": "单次任务最大翻页数，防风控",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 50
+              },
+              "sort": {
+                "$ref": "#/$defs/SortSpec"
+              },
+              "refresh": {
+                "default": false,
+                "description": "true=忽略缓存强制请求上游",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          },
+          "SearchField": {
+            "default": "all",
+            "description": "搜索命中字段：all/企业名称/人名/地址/统一码/联系方式",
+            "type": "string",
+            "enum": [
+              "all",
+              "name",
+              "legalRepresentative",
+              "address",
+              "socialCreditCode",
+              "contact"
+            ]
+          },
+          "SortSpec": {
+            "type": "object",
+            "properties": {
+              "field": {
+                "$ref": "#/$defs/SortField"
+              },
+              "direction": {
+                "default": "desc",
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
+              }
+            }
+          },
+          "SortField": {
+            "default": "score",
+            "type": "string",
+            "enum": [
+              "score",
+              "name",
+              "regCapital",
+              "foundTime",
+              "contactCount"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "tanji_search_advance",
+      "description": "高级筛选：多条件（行业/地区/注册资本/风险等）搜索企业",
+      "operationId": "search.advance",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "filters": {
+            "$ref": "#/$defs/__schema0"
+          },
+          "page": {
+            "default": 1,
+            "description": "页码，从 1 开始",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "pageSize": {
+            "default": 20,
+            "description": "每页条数，1-100",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "maxPages": {
+            "default": 5,
+            "description": "单次任务最大翻页数，防风控",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 50
+          },
+          "sort": {
+            "$ref": "#/$defs/SortSpec"
+          },
+          "refresh": {
+            "default": false,
+            "description": "true=忽略缓存强制请求上游",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "filters"
+        ],
+        "$defs": {
+          "SearchAdvanceRequest": {
+            "type": "object",
+            "properties": {
+              "filters": {
+                "$ref": "#/$defs/__schema0"
+              },
+              "page": {
+                "default": 1,
+                "description": "页码，从 1 开始",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9007199254740991
+              },
+              "pageSize": {
+                "default": 20,
+                "description": "每页条数，1-100",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100
+              },
+              "maxPages": {
+                "default": 5,
+                "description": "单次任务最大翻页数，防风控",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 50
+              },
+              "sort": {
+                "$ref": "#/$defs/SortSpec"
+              },
+              "refresh": {
+                "default": false,
+                "description": "true=忽略缓存强制请求上游",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "filters"
+            ]
+          },
+          "__schema0": {
+            "$ref": "#/$defs/FilterGroup"
+          },
+          "FilterGroup": {
+            "type": "object",
+            "properties": {
+              "relation": {
+                "default": "all",
+                "description": "all=全部满足，any=任一满足",
+                "type": "string",
+                "enum": [
+                  "all",
+                  "any"
+                ]
+              },
+              "conditions": {
+                "default": [],
+                "maxItems": 50,
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/FilterCondition"
+                }
+              },
+              "groups": {
+                "default": [],
+                "description": "嵌套条件组（最多 5 组）",
+                "maxItems": 5,
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/__schema0"
+                }
+              }
+            },
+            "description": "条件组（所有/任一）"
+          },
+          "FilterCondition": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9_.]{0,63}$",
+                "description": "条件字段 key，如 industriesV2 / regCapitalRmb / name"
+              },
+              "op": {
+                "$ref": "#/$defs/FilterOp"
+              },
+              "value": {
+                "$ref": "#/$defs/FilterValue"
+              },
+              "negated": {
+                "default": false,
+                "description": "取反（NOT）",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "key",
+              "op",
+              "value"
+            ],
+            "description": "单条筛选条件"
+          },
+          "FilterOp": {
+            "type": "string",
+            "enum": [
+              "eq",
+              "anyOf",
+              "contains",
+              "range",
+              "boolean",
+              "preset",
+              "exists",
+              "notExists",
+              "custom"
+            ]
+          },
+          "FilterValue": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": [
+                    "string",
+                    "number",
+                    "boolean"
+                  ]
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "min": {
+                    "type": [
+                      "number",
+                      "string"
+                    ]
+                  },
+                  "max": {
+                    "type": [
+                      "number",
+                      "string"
+                    ]
+                  }
+                }
+              },
+              {
+                "$ref": "#/$defs/__schema1"
+              }
+            ]
+          },
+          "__schema1": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/__schema1"
+                }
+              },
+              {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {
+                  "$ref": "#/$defs/__schema1"
+                }
+              }
+            ]
+          },
+          "SortSpec": {
+            "type": "object",
+            "properties": {
+              "field": {
+                "$ref": "#/$defs/SortField"
+              },
+              "direction": {
+                "default": "desc",
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
+              }
+            }
+          },
+          "SortField": {
+            "default": "score",
+            "type": "string",
+            "enum": [
+              "score",
+              "name",
+              "regCapital",
+              "foundTime",
+              "contactCount"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "tanji_list_companies",
+      "description": "按 queryId 翻页获取企业列表",
+      "operationId": "companies.list",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "queryId": {
+            "type": "string",
+            "pattern": "^q_[0-9]{8,}_[0-9a-z]{4,}$",
+            "description": "查询会话 ID，如 q_20261109_ab12cd"
+          },
+          "page": {
+            "default": 1,
+            "description": "页码，从 1 开始",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "pageSize": {
+            "default": 20,
+            "description": "每页条数，1-100",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "refresh": {
+            "default": false,
+            "description": "true=忽略缓存强制请求上游",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "queryId"
+        ],
+        "$defs": {
+          "CompaniesListRequest": {
+            "type": "object",
+            "properties": {
+              "queryId": {
+                "type": "string",
+                "pattern": "^q_[0-9]{8,}_[0-9a-z]{4,}$",
+                "description": "查询会话 ID，如 q_20261109_ab12cd"
+              },
+              "page": {
+                "default": 1,
+                "description": "页码，从 1 开始",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9007199254740991
+              },
+              "pageSize": {
+                "default": 20,
+                "description": "每页条数，1-100",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100
+              },
+              "refresh": {
+                "default": false,
+                "description": "true=忽略缓存强制请求上游",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "queryId"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "tanji_company_detail",
+      "description": "企业详情（工商/股东/人员/地址等）",
+      "operationId": "companies.detail",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "企业 ID（_id）或统一社会信用代码"
+          },
+          "refresh": {
+            "default": false,
+            "description": "true=忽略缓存强制刷新",
+            "type": "boolean"
+          },
+          "sections": {
+            "default": [],
+            "description": "按段拉取（basic/detail/holders/members/invests/branches/alterations）；空=完整详情；轻量=basic,detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/CompanyDetailSection"
+            }
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "$defs": {
+          "CompaniesDetailRequest": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "description": "企业 ID（_id）或统一社会信用代码"
+              },
+              "refresh": {
+                "default": false,
+                "description": "true=忽略缓存强制刷新",
+                "type": "boolean"
+              },
+              "sections": {
+                "default": [],
+                "description": "按段拉取（basic/detail/holders/members/invests/branches/alterations）；空=完整详情；轻量=basic,detail",
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/CompanyDetailSection"
+                }
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "CompanyDetailSection": {
+            "type": "string",
+            "enum": [
+              "basic",
+              "detail",
+              "holders",
+              "members",
+              "invests",
+              "branches",
+              "alterations"
+            ],
+            "description": "企业详情分段：basic/detail/holders/members/invests/branches/alterations"
+          }
+        }
+      }
+    },
+    {
+      "name": "tanji_list_contacts",
+      "description": "企业联系人列表（未解锁为空）",
+      "operationId": "contacts.list",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "企业 ID（_id）"
+          },
+          "refresh": {
+            "default": false,
+            "type": "boolean"
+          },
+          "types": {
+            "default": [],
+            "description": "过滤联系人类型，空=全部",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "mobile",
+                "phone",
+                "email"
+              ]
+            }
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "$defs": {
+          "ContactsListRequest": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "description": "企业 ID（_id）"
+              },
+              "refresh": {
+                "default": false,
+                "type": "boolean"
+              },
+              "types": {
+                "default": [],
+                "description": "过滤联系人类型，空=全部",
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "mobile",
+                    "phone",
+                    "email"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "tanji_unlock_company",
+      "description": "解锁企业（扣 1 额度；必须 confirm=true；可选 quota/contacts 额外查询）",
+      "operationId": "companies.unlock",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{8,32}$",
+            "description": "探迹企业 ID（响应中的 _id）"
+          },
+          "confirm": {
+            "type": "boolean",
+            "const": true
+          },
+          "idempotencyKey": {
+            "type": "string"
+          },
+          "quota": {
+            "type": "boolean"
+          },
+          "contacts": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "confirm"
+        ]
+      }
+    },
+    {
+      "name": "tanji_accounts",
+      "description": "列出账号及其运行状态",
+      "operationId": "accounts.list",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "tanji_cache_stats",
+      "description": "查看本地缓存统计",
+      "operationId": "cache.stats",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "tanji_cache_clear",
+      "description": "清空或按前缀清理缓存",
+      "operationId": "cache.clear",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "prefix": {
+            "description": "按 key/企业 ID 前缀清理，空=全部",
+            "type": "string"
+          },
+          "all": {
+            "default": false,
+            "description": "true=清空全部缓存",
+            "type": "boolean"
+          }
+        },
+        "$defs": {
+          "CacheClearRequest": {
+            "type": "object",
+            "properties": {
+              "prefix": {
+                "description": "按 key/企业 ID 前缀清理，空=全部",
+                "type": "string"
+              },
+              "all": {
+                "default": false,
+                "description": "true=清空全部缓存",
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "tanji_filter_registry",
+      "description": "查询高级筛选可用条件（key/label/控件/类别）",
+      "operationId": "filters.registry",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "keyword": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  ]
+}

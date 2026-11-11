@@ -1,0 +1,310 @@
+{
+  "anyOf": [
+    {
+      "type": "object",
+      "properties": {
+        "ok": {
+          "type": "boolean",
+          "const": true
+        },
+        "data": {
+          "$ref": "#/$defs/HealthResponse"
+        },
+        "meta": {
+          "$ref": "#/$defs/ResponseMeta"
+        },
+        "error": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "ok",
+        "data",
+        "meta",
+        "error"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "ok": {
+          "type": "boolean",
+          "const": false
+        },
+        "data": {
+          "type": "null"
+        },
+        "meta": {
+          "$ref": "#/$defs/ResponseMeta"
+        },
+        "error": {
+          "$ref": "#/$defs/ApiError"
+        }
+      },
+      "required": [
+        "ok",
+        "data",
+        "meta",
+        "error"
+      ]
+    }
+  ],
+  "$defs": {
+    "Envelope_health_get": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "ok": {
+              "type": "boolean",
+              "const": true
+            },
+            "data": {
+              "$ref": "#/$defs/HealthResponse"
+            },
+            "meta": {
+              "$ref": "#/$defs/ResponseMeta"
+            },
+            "error": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "ok",
+            "data",
+            "meta",
+            "error"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "ok": {
+              "type": "boolean",
+              "const": false
+            },
+            "data": {
+              "type": "null"
+            },
+            "meta": {
+              "$ref": "#/$defs/ResponseMeta"
+            },
+            "error": {
+              "$ref": "#/$defs/ApiError"
+            }
+          },
+          "required": [
+            "ok",
+            "data",
+            "meta",
+            "error"
+          ]
+        }
+      ]
+    },
+    "HealthResponse": {
+      "type": "object",
+      "properties": {
+        "ok": {
+          "type": "boolean"
+        },
+        "version": {
+          "type": "string",
+          "description": "客户端版本"
+        },
+        "uptimeSec": {
+          "type": "number",
+          "minimum": 0
+        },
+        "schemaVersion": {
+          "type": "string"
+        },
+        "browser": {
+          "type": "object",
+          "properties": {
+            "connected": {
+              "type": "boolean"
+            },
+            "pid": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "headless": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "connected"
+          ]
+        },
+        "cache": {
+          "type": "object",
+          "properties": {
+            "dbPath": {
+              "type": "string"
+            },
+            "ready": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "ready"
+          ]
+        }
+      },
+      "required": [
+        "ok",
+        "version",
+        "uptimeSec",
+        "schemaVersion"
+      ],
+      "description": "存活探针（不校验登录态）"
+    },
+    "ResponseMeta": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "default": "1.0",
+          "type": "string",
+          "const": "1.0"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 8,
+          "description": "请求 ID，用于日志追踪"
+        },
+        "timestamp": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,9})?(?:Z|[+-]\\d{2}:\\d{2})$",
+          "description": "ISO-8601 日期时间（含时区），如 2026-11-09T19:38:00+08:00"
+        },
+        "tookMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "cached": {
+          "default": false,
+          "type": "boolean"
+        },
+        "pagination": {
+          "$ref": "#/$defs/PaginationMeta"
+        },
+        "warnings": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "upstream": {
+          "type": "object",
+          "properties": {
+            "baseUrl": {
+              "type": "string"
+            },
+            "latencyMs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "requestId": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": [
+        "requestId",
+        "timestamp",
+        "tookMs"
+      ]
+    },
+    "PaginationMeta": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "pageSize": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "total": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "hasMore": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "page",
+        "pageSize",
+        "total",
+        "hasMore"
+      ]
+    },
+    "ApiError": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/ErrorCode"
+        },
+        "message": {
+          "type": "string"
+        },
+        "retryable": {
+          "type": "boolean"
+        },
+        "retryAfterMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "details": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {}
+        }
+      },
+      "required": [
+        "code",
+        "message",
+        "retryable"
+      ]
+    },
+    "ErrorCode": {
+      "type": "string",
+      "enum": [
+        "BAD_REQUEST",
+        "UNAUTHORIZED",
+        "AUTH_REQUIRED",
+        "LOGIN_FAILED",
+        "FORBIDDEN",
+        "NOT_FOUND",
+        "METHOD_NOT_ALLOWED",
+        "VALIDATION_FAILED",
+        "CONFLICT",
+        "CAPTCHA_REQUIRED",
+        "QUOTA_EXHAUSTED",
+        "RATE_LIMITED",
+        "ALREADY_RUNNING",
+        "TIMEOUT",
+        "UPSTREAM_CHANGED",
+        "UPSTREAM_UNAVAILABLE",
+        "NOT_IMPLEMENTED",
+        "CACHE_ERROR",
+        "INTERNAL"
+      ],
+      "description": "统一错误码"
+    }
+  }
+}

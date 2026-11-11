@@ -1,0 +1,67 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "企业 ID（_id）或统一社会信用代码"
+    },
+    "refresh": {
+      "default": false,
+      "description": "true=忽略缓存强制刷新",
+      "type": "boolean"
+    },
+    "sections": {
+      "default": [],
+      "description": "按段拉取（basic/detail/holders/members/invests/branches/alterations）；空=完整详情；轻量=basic,detail",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/CompanyDetailSection"
+      }
+    }
+  },
+  "required": [
+    "id"
+  ],
+  "$defs": {
+    "CompaniesDetailRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "企业 ID（_id）或统一社会信用代码"
+        },
+        "refresh": {
+          "default": false,
+          "description": "true=忽略缓存强制刷新",
+          "type": "boolean"
+        },
+        "sections": {
+          "default": [],
+          "description": "按段拉取（basic/detail/holders/members/invests/branches/alterations）；空=完整详情；轻量=basic,detail",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CompanyDetailSection"
+          }
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "CompanyDetailSection": {
+      "type": "string",
+      "enum": [
+        "basic",
+        "detail",
+        "holders",
+        "members",
+        "invests",
+        "branches",
+        "alterations"
+      ],
+      "description": "企业详情分段：basic/detail/holders/members/invests/branches/alterations"
+    }
+  }
+}
