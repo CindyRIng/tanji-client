@@ -1,0 +1,30 @@
+{
+  "baseUrl": "https://sales.tungee.com",
+  "loginUrl": "https://user.tungee.com/users/sign-in",
+  "headless": true,
+  "apiToken": "REPLACE_WITH_RANDOM_TOKEN",
+  "port": 8787,
+  "phone": "13800000001",
+  "password": "REPLACE_ME",
+  "session": {
+    "ratePerMin": 20,
+    "priorityReserve": 5,
+    "bulkQueueMax": 12
+  },
+  "accounts": [
+    {
+      "id": "main",
+      "phone": "13800000001",
+      "password": "REPLACE_ME",
+      "profileDir": "~/.tanji-client/accounts/main/profile",
+      "cacheDb": "~/.tanji-client/accounts/main/cache.db",
+      "port": 8787
+    },
+    {
+      "id": "backup",
+      "phone": "13800000002",
+      "password": "REPLACE_ME",
+      "port": 8788
+    }
+  ]
+}

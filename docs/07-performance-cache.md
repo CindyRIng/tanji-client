@@ -259,7 +259,7 @@ curl -X DELETE -H 'Authorization: Bearer <token>' -H 'content-type: application/
 npm run build
 
 # 2) 确保 profile 已登录（或 bench 会自动用环境变量登录）
-cd /home/songqian/tanji-client
+cd "$PROJECT_DIR"
 DISPLAY=:0 ~/cloak-env/bin/cloak-run env \
   TANJI_PROFILE_DIR=$PWD/exploration/profile TANJI_PHONE=... TANJI_PASSWORD=... \
   node dist/bench/run.js

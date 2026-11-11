@@ -4,6 +4,6 @@
 set -euo pipefail
 SELF="$(readlink -f "${BASH_SOURCE[0]}")"
 ROOT="$(cd "$(dirname "$SELF")/.." && pwd)"
-CLOAK_ENV="${CLOAK_ENV:-/home/songqian/cloak-env}"
+CLOAK_ENV="${CLOAK_ENV:-$HOME/cloak-env}"
 cd "$ROOT"
 exec "$CLOAK_ENV/bin/cloak-run" node dist/main.js "$@"

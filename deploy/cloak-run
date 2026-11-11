@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# 在共享 CloakBrowser FHS 环境中执行任意命令
+# 用法: cloak-run <command> [args...]（默认保持当前工作目录）
+# 可选: CLOAK_FHS 指定 FHS 根目录；CLOAK_WORKDIR 指定执行目录
+set -euo pipefail
+SELF="$(readlink -f "${BASH_SOURCE[0]}")"
+ROOT="$(cd "$(dirname "$SELF")/.." && pwd)"
+FHS="${CLOAK_FHS:-$ROOT/cloak-fhs}"
+if [ "$#" -lt 1 ]; then
+  echo "usage: cloak-run <command> [args...]" >&2
+  exit 2
+fi
+WORKDIR="${CLOAK_WORKDIR:-$PWD}"
+ESCAPED_WORKDIR="${WORKDIR//\'/\'\\\'\'}"
+args=""
+for arg in "$@"; do args+=" $(printf '%q' "$arg")"; done
+export DISPLAY="${DISPLAY:-:0}"
+
+if [ -x "$FHS/bin/cloak-fhs" ]; then
+  exec "$FHS/bin/cloak-fhs" -c "cd '$ESCAPED_WORKDIR' && exec$args"
+fi
+
+# 非 NixOS / 未构建 FHS 时直接执行；NixOS 没有 FHS 会因动态链接器失败
+if grep -qi '^ID=nixos' /etc/os-release 2>/dev/null; then
+  echo "cloak-run: NixOS 上必须先构建 FHS：$ROOT/cloak-fhs（见 deploy/README.md）" >&2
+  exit 127
+fi
+cd "$WORKDIR"
+exec "$@"

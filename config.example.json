@@ -1,0 +1,32 @@
+{
+  "baseUrl": "https://sales.tungee.com",
+  "loginUrl": "https://user.tungee.com/users/sign-in",
+  "phone": "13800000000",
+  "password": "REPLACE_ME",
+  "headless": true,
+  "apiToken": "REPLACE_WITH_RANDOM_TOKEN",
+  "host": "127.0.0.1",
+  "port": 8787,
+  "profileDir": "~/.tanji-client/profile",
+  "cache": {
+    "dbPath": "~/.tanji-client/cache.db",
+    "detailTtlSec": 604800,
+    "listTtlSec": 86400
+  },
+  "session": {
+    "heartbeatSec": 300,
+    "ratePerMin": 20,
+    "autoRelogin": true,
+    "maxPages": 5,
+    "requestTimeoutMs": 30000,
+    "priorityReserve": 5,
+    "bulkQueueMax": 12
+  },
+  "logLevel": "info",
+  "log": {
+    "file": "~/.tanji-client/logs/tanji.log",
+    "maxBytes": 10485760,
+    "keep": 5,
+    "stdout": true
+  }
+}

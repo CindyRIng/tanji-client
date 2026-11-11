@@ -10,7 +10,8 @@ All notable changes to tanji-client are documented here.
 - 多账号（进程级）：`accounts` 配置、`tanji accounts list/start/stop`、每账号独立 profile/cache/端口。
 - 常驻：systemd user 服务（`tanji service install/status/stop/uninstall`）、`--start-browser`。
 - 日志：JSONL 文件日志、按大小轮转、保留份数、密码/token/cookie 脱敏。
-- 文档：`docs/README.md` 索引、`SECURITY.md`、`CHANGELOG.md`。
+- 文档：`docs/README.md` 索引、`SECURITY.md`、`CHANGELOG.md`、`docs/09-configuration.md`。
+- 公共领域许可（Unlicense）与公共仓库配置模板（config/.env/deploy/setup 脚本）。
 
 ### Changed
 

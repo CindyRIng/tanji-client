@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# 查看共享 cloak 环境版本与路径
+set -euo pipefail
+SELF="$(readlink -f "${BASH_SOURCE[0]}")"
+ROOT="$(cd "$(dirname "$SELF")/.." && pwd)"
+echo "cloak-env: $ROOT"
+echo "fhs: ${CLOAK_FHS:-$ROOT/cloak-fhs}"
+node -e "const r=require('path').join('$ROOT','node_modules'); console.log('cloakbrowser', require(r+'/cloakbrowser/package.json').version); console.log('playwright-core', require(r+'/playwright-core/package.json').version)" 2>/dev/null || {
+  echo "cloakbrowser: (inspect $ROOT/node_modules/cloakbrowser/package.json)"
+}

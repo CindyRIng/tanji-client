@@ -147,10 +147,11 @@ export interface LoadConfigOptions {
 /** 加载配置：优先级 CLI（由调用方覆盖） > env > 配置文件 > 默认值 */
 export function loadConfig(opts: LoadConfigOptions = {}): Config {
   const env = opts.env ?? process.env;
-  const configPath =
+  const configPath = expandHome(
     opts.configPath ??
-    env.TANJI_CONFIG_FILE ??
-    path.join(os.homedir(), '.tanji-client', 'config.json');
+      env.TANJI_CONFIG_FILE ??
+      path.join(os.homedir(), '.tanji-client', 'config.json'),
+  );
 
   let fileConfig: z.infer<typeof ConfigFileSchema> = {};
   if (fs.existsSync(configPath)) {

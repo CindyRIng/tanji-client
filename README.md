@@ -77,8 +77,8 @@ flowchart LR
 
 ```bash
 # 0) 共享浏览器环境（独立于本仓库）
+CLOAK_ENV=$HOME/cloak-env scripts/setup-cloak-env.sh
 ~/cloak-env/bin/cloak-env-info          # 查看版本
-# 若未安装：见 docs/08-deployment.md「共享 cloak 环境」
 
 # 1) 安装依赖并构建
 npm install
@@ -87,7 +87,8 @@ npm run build
 # 2) 配置（权限 600）
 cp .env.example .env
 # 填入 TANJI_PHONE / TANJI_PASSWORD / TANJI_API_TOKEN
-# 或使用 ~/.tanji-client/config.json（见 docs/08-deployment.md）
+# `.env` 会被自动加载（也可用 TANJI_ENV_FILE 指定）
+# 或使用 ~/.tanji-client/config.json（见 docs/09-configuration.md）
 
 # 3) 安装全局命令（可选）
 ln -sf "$PWD/bin/tanji-run" ~/.local/bin/tanji
@@ -96,6 +97,23 @@ ln -sf "$PWD/bin/tanji-run" ~/.local/bin/tanji
 tanji login --interactive       # 首次登录（可见浏览器过验证码）
 tanji status                    # 登录态 + 日/月额度
 tanji search name --name 团车 --page-size 5
+```
+
+## 配置与环境
+
+- 完整字段、环境变量、共享 `~/cloak-env` 初始化：[docs/09-configuration.md](docs/09-configuration.md)
+- 单账号模板：[config.example.json](config.example.json)
+- 多账号模板：[config.multi-account.example.json](config.multi-account.example.json)
+- 环境变量模板：[.env.example](.env.example)
+- 筛选条件示例：[examples/filters.example.json](examples/filters.example.json)
+
+```bash
+# 初始化共享浏览器环境（NixOS 会构建 FHS）
+CLOAK_ENV=$HOME/cloak-env scripts/setup-cloak-env.sh
+
+# 配置
+cp config.example.json ~/.tanji-client/config.json
+chmod 600 ~/.tanji-client/config.json
 ```
 
 ## 使用方式
@@ -161,6 +179,7 @@ Agent 使用说明见 [skills/tanji/SKILL.md](skills/tanji/SKILL.md)。
 | 06 | [接口规范](docs/06-api-spec.md) | **权威 API 契约** | 现行 v1.0 |
 | 07 | [性能与缓存](docs/07-performance-cache.md) | 压测、调度、缓存机制 | 现行 |
 | 08 | [部署与常驻](docs/08-deployment.md) | 共享环境、systemd、多账号、排障 | 现行 |
+| 09 | [配置与环境](docs/09-configuration.md) | 配置文件、环境变量、共享浏览器环境、排障 | 现行 |
 | — | [文档索引](docs/README.md) | 阅读顺序与维护约定 | — |
 
 ## 项目结构
@@ -168,9 +187,15 @@ Agent 使用说明见 [skills/tanji/SKILL.md](skills/tanji/SKILL.md)。
 ```text
 .
 ├── bin/                    # tanji-run / 共享 FHS 入口
+├── deploy/                 # fhs.nix + 通用 cloak-run
+├── scripts/                # setup-cloak-env.sh
+├── examples/               # filter 示例
 ├── data/                   # filter-registry.json（345 条件）
 ├── docs/                   # 需求、实录、接口、性能、部署
 ├── skills/tanji/           # Agent SKILL
+├── config.example.json     # 单账号配置模板
+├── config.multi-account.example.json
+├── LICENSE                 # Unlicense（公共领域）
 ├── spec/                   # 自动生成的 OpenAPI / MCP / CLI 规范
 ├── src/
 │   ├── adapters/tungee/    # 上游 API、filter 映射、限频
@@ -219,4 +244,5 @@ npm run bench           # 性能基准（需真实登录环境）
 - 当前版本：`0.1.0`（含 2026-11-10 的调度/解锁/缓存优化）。
 - 变更记录：[CHANGELOG.md](CHANGELOG.md)。
 - 安全说明：[SECURITY.md](SECURITY.md)。
-- **License：本仓库为私有项目，未声明开源许可证，默认保留所有权利；未经授权请勿分发。**
+- **License：[Unlicense](LICENSE)（公共领域，无限制）。**
+- 免责声明：本项目的 License 仅覆盖本仓库的代码与文档；使用探迹、CloakBrowser、Chromium 及历史记录中的业务数据时，请自行遵守对应服务条款、授权范围与当地法律。

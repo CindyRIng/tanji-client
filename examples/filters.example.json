@@ -1,0 +1,15 @@
+{
+  "relation": "all",
+  "conditions": [
+    {
+      "key": "industriesV2",
+      "op": "anyOf",
+      "value": ["信息传输、软件和信息技术服务业"]
+    },
+    {
+      "key": "regCapitalRmb",
+      "op": "range",
+      "value": { "min": 100, "max": 1000 }
+    }
+  ]
+}

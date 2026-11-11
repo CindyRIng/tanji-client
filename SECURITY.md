@@ -1,5 +1,7 @@
 # Security Policy
 
+本仓库为公共仓库；历史技术记录中的账号与联系人号码已脱敏，不含 profile、cookie、token 或原始日志。
+
 ## 支持的版本
 
 | 版本 | 支持 |
@@ -9,7 +11,7 @@
 ## 报告安全问题
 
 请**不要**在公开 issue 中提交账号、密码、token、cookie 或可复现的登录信息。
-通过仓库维护者的私有渠道报告，并附上：
+通过仓库维护者的私下渠道报告，并附上：
 
 - 受影响版本/提交；
 - 复现步骤（脱敏后）；
@@ -35,3 +37,4 @@
 - `cloakbrowser` 版本需锁定（当前 `0.6.5`，keyless，Chromium 146）。
 - 升级 cloakbrowser 0.7.x 需要 license key；0.7.2 起 `playwright-core` 需 `<1.65`。
 - 定期执行 `npm audit` 与 `npm run gen:check`。
+- 本仓库代码与文档采用 Unlicense（公共领域）；第三方服务、浏览器与业务数据仍受各自条款约束。

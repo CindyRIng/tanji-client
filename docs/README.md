@@ -9,11 +9,12 @@
 | --- | --- | --- |
 | 1 | [README](../README.md) | 所有人先看项目概览与快速开始 |
 | 2 | [06-接口规范](06-api-spec.md) | 接入 REST/CLI/MCP 的开发者 |
-| 3 | [08-部署与常驻](08-deployment.md) | 部署、常驻、多账号运维 |
-| 4 | [07-性能与缓存](07-performance-cache.md) | 关心吞吐、缓存、限频的人 |
-| 5 | [04-高级筛选清单](04-filter-catalog.md) | 需要构造筛选条件的人 |
-| 6 | [03-页面操作实录](03-page-operations.md) / [05-企业查询实录](05-enterprise-search.md) | 需要理解上游页面/接口的人 |
-| 7 | [01-需求文档](01-requirements.md) / [00-访谈记录](00-interview.md) / [02-接口草案](02-api-draft.md) | 追溯设计背景（历史归档） |
+| 3 | [09-配置与环境](09-configuration.md) | 从零配置账号、共享浏览器环境、缓存 |
+| 4 | [08-部署与常驻](08-deployment.md) | 部署、常驻、多账号运维 |
+| 5 | [07-性能与缓存](07-performance-cache.md) | 关心吞吐、缓存、限频的人 |
+| 6 | [04-高级筛选清单](04-filter-catalog.md) | 需要构造筛选条件的人 |
+| 7 | [03-页面操作实录](03-page-operations.md) / [05-企业查询实录](05-enterprise-search.md) | 需要理解上游页面/接口的人 |
+| 8 | [01-需求文档](01-requirements.md) / [00-访谈记录](00-interview.md) / [02-接口草案](02-api-draft.md) | 追溯设计背景（历史归档） |
 
 ## 文档状态
 
@@ -28,6 +29,7 @@
 | [06-api-spec](06-api-spec.md) | **现行规范 v1.0** | **API 契约以本文 + `spec/` 为准** |
 | [07-performance-cache](07-performance-cache.md) | 现行报告 | 性能/缓存以本文为准 |
 | [08-deployment](08-deployment.md) | 现行指南 | 部署以本文为准 |
+| [09-configuration](09-configuration.md) | 现行指南 | 配置/环境变量以本文为准 |
 
 ## 文档约定
 
