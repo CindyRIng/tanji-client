@@ -12,6 +12,7 @@ All notable changes to tanji-client are documented here.
 - 日志：JSONL 文件日志、按大小轮转、保留份数、密码/token/cookie 脱敏。
 - 文档：`docs/README.md` 索引、`SECURITY.md`、`CHANGELOG.md`、`docs/09-configuration.md`。
 - 公共领域许可（Unlicense）与公共仓库配置模板（config/.env/deploy/setup 脚本）。
+- MCP 默认代理到常驻 REST 服务（`TANJI_CLIENT_URL`/`--url`）；`--local` 才本地启动，避免与 systemd owner 抢 profile。
 
 ### Changed
 

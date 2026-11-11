@@ -107,6 +107,12 @@ export const ERROR_CATALOG = {
     title: '上游不可用',
     description: '网络异常/探迹服务不可达',
   },
+  SERVICE_UNAVAILABLE: {
+    http: 503,
+    retryable: true,
+    title: '常驻服务不可达',
+    description: '本地 tanji-client REST 服务未启动或不可达；请先运行 tanji serve，或使用 --local',
+  },
   NOT_IMPLEMENTED: {
     http: 501,
     retryable: false,

@@ -152,6 +152,7 @@
 | `TIMEOUT` | 504 | 是 | 上游超时 |
 | `UPSTREAM_CHANGED` | 502 | 否 | 探迹改版/字段变化 |
 | `UPSTREAM_UNAVAILABLE` | 503 | 是 | 探迹不可达 |
+| `SERVICE_UNAVAILABLE` | 503 | 是 | CLI/MCP 代理的本地常驻服务不可达 |
 | `NOT_IMPLEMENTED` | 501 | 否 | 骨架阶段未实现 |
 | `CACHE_ERROR` | 500 | 否 | SQLite 读写失败 |
 | `INTERNAL` | 500 | 否 | 未分类内部错误 |

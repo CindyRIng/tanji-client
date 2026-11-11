@@ -156,11 +156,33 @@ REST 仅监听 `127.0.0.1`；除 `/v1/health` 与文档页外均需 Bearer token
 
 ### MCP
 
+MCP **默认只做 REST 代理**，不打开浏览器、不持有 profile：
+
 ```bash
-tanji mcp
+tanji mcp                         # 代理 http://127.0.0.1:8787
+tanji mcp --url http://127.0.0.1:8787
+TANJI_CLIENT_URL=http://127.0.0.1:8787 tanji mcp
+tanji mcp --local                 # 仅开发/无服务时：本地 App，会独占 profile
 ```
 
-暴露 13 个 MCP 工具（health/status/accounts/login/search/list/detail/contacts/unlock/cache/filters）。
+MCP 客户端配置：
+
+```json
+{
+  "mcpServers": {
+    "tanji": {
+      "command": "/usr/local/bin/tanji",
+      "args": ["mcp"],
+      "env": {
+        "TANJI_CLIENT_URL": "http://127.0.0.1:8787",
+        "TANJI_API_TOKEN": "REPLACE_WITH_TOKEN"
+      }
+    }
+  }
+}
+```
+
+暴露 13 个 MCP 工具（health/status/accounts/login/search/list/detail/contacts/unlock/cache/filters）。服务未启动时工具列表仍可用，数据工具返回 `SERVICE_UNAVAILABLE`，不会去抢 profile 锁。
 
 ### SKILL
 

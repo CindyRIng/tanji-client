@@ -133,6 +133,7 @@ tanji status
 | `TANJI_API_TOKEN` | `change-me` | REST/MCP Bearer token，**必须修改** |
 | `TANJI_HOST` | `127.0.0.1` | REST 监听地址 |
 | `TANJI_PORT` | `8787` | REST 端口 |
+| `TANJI_CLIENT_URL` | — | CLI/MCP 代理目标；默认 `http://host:port` |
 | `TANJI_CACHE_DRIVER` | `sqlite` | `sqlite` 或 `memory` |
 | `TANJI_CACHE_DB` | `~/.tanji-client/cache.db` | SQLite 路径 |
 | `TANJI_CACHE_DETAIL_TTL` | `604800` | 详情/联系人 TTL（秒） |
@@ -209,7 +210,38 @@ CLOAK_ENV=/opt/cloak-env tanji status
 - REST：每个账号一个端口；
 - 常驻：`tanji service install main`、`tanji service install sales`，或 `tanji accounts start --all`。
 
-## 7. 启动与验证
+## 7. MCP 代理（推荐）
+
+MCP 默认**不打开浏览器**，只把工具调用转发给常驻 REST 服务：
+
+```bash
+tanji mcp                         # 默认 http://127.0.0.1:8787
+tanji mcp --url http://127.0.0.1:8787
+TANJI_CLIENT_URL=http://127.0.0.1:8787 tanji mcp
+tanji mcp --local                 # 仅开发/无服务时：本地 App，会独占 profile
+```
+
+MCP 客户端配置示例（Claude/Codex 等）：
+
+```json
+{
+  "mcpServers": {
+    "tanji": {
+      "command": "/usr/local/bin/tanji",
+      "args": ["mcp"],
+      "env": {
+        "TANJI_CLIENT_URL": "http://127.0.0.1:8787",
+        "TANJI_API_TOKEN": "REPLACE_WITH_TOKEN"
+      }
+    }
+  }
+}
+```
+
+- 服务未启动时，工具列表仍可返回；调用数据工具会返回 `SERVICE_UNAVAILABLE`，不会去抢 profile 锁。
+- `--local` 会自己启动浏览器，只在没有常驻服务时使用；同一 profile 只能有一个 owner。
+
+## 8. 启动与验证
 
 ```bash
 tanji health                     # 无需登录
@@ -227,7 +259,7 @@ curl http://127.0.0.1:8787/v1/health
 curl -H "Authorization: Bearer $TANJI_API_TOKEN" http://127.0.0.1:8787/v1/status
 ```
 
-## 8. 常见配置场景
+## 9. 常见配置场景
 
 | 需求 | 配置 |
 | --- | --- |
@@ -240,7 +272,7 @@ curl -H "Authorization: Bearer $TANJI_API_TOKEN" http://127.0.0.1:8787/v1/status
 | 批量任务 | 解锁走 priority；详情用 `--sections basic,detail` |
 | 多账号隔离 | `accounts` + 独立端口/profile/cache |
 
-## 9. 安全
+## 10. 安全
 
 - `config.json` / `.env` 权限 `600`，不要提交；
 - `TANJI_API_TOKEN` 必须改成随机值；
@@ -249,7 +281,7 @@ curl -H "Authorization: Bearer $TANJI_API_TOKEN" http://127.0.0.1:8787/v1/status
 - 解锁消耗额度，务必先 `tanji status`；
 - 使用需遵守探迹服务条款与授权范围。
 
-## 10. 排障
+## 11. 排障
 
 | 现象 | 处理 |
 | --- | --- |

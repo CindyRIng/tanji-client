@@ -119,6 +119,21 @@ pid/日志：`~/.tanji-client/run/<id>.pid`、`~/.tanji-client/logs/<id>.out.log
 
 > 同一账号不要同时用 systemd 与 `accounts start`（单实例锁会拒绝）。
 
+## 5.4 MCP 代理（默认）
+
+MCP 不直接开浏览器，而是转发到常驻 REST 服务：
+
+```bash
+tanji mcp                         # 默认 http://127.0.0.1:8787
+tanji mcp --url http://127.0.0.1:8787
+TANJI_CLIENT_URL=http://127.0.0.1:8787 tanji mcp
+tanji mcp --local                 # 仅开发/无服务：会独占 profile
+```
+
+- 服务在线：工具调用走 REST，登录/查询/缓存都在服务进程内完成；
+- 服务离线：数据工具返回 `SERVICE_UNAVAILABLE`，不会争抢 profile；
+- `--local` 才创建本地 App，必须确保没有常驻服务占用同一 profile。
+
 ## 6. 多账号
 
 `~/.tanji-client/config.json`：

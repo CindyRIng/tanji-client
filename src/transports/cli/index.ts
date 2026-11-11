@@ -1,10 +1,11 @@
 /**
  * CLI 传输层（commander）：命令与 operations 对应，默认输出统一 envelope JSON
  */
+import fs from 'node:fs';
+import path from 'node:path';
 import { Command } from 'commander';
 import { createApp, type App } from '../../app.js';
 import { invoke, type InvocationInput } from '../../api/dispatch.js';
-import { getOperation } from '../../api/operations.js';
 import { loadConfig } from '../../config/schema.js';
 import { resolveAccount } from '../../accounts/config.js';
 import { asTanjiError, TanjiError, type ErrorCode } from '../../errors/catalog.js';
@@ -15,6 +16,8 @@ import { startAccount, stopAccount, accountRuntimeStatus, fetchHealth } from '..
 import { installService, serviceStatus, stopService, systemdAvailable, uninstallService } from '../../accounts/systemd.js';
 import { startRestServer } from '../rest/server.js';
 import { startMcpServer } from '../mcp/server.js';
+import { createMcpBackend } from '../../mcp/backend.js';
+import { RemoteTanjiClient } from '../../remote/client.js';
 import { SearchAdvanceRequestSchema } from '../../domain/search.js';
 import { OPERATIONS } from '../../api/operations.js';
 import { operationHelpText, operationsIndexText, rootHelpText } from './help.js';
@@ -38,47 +41,49 @@ interface GlobalOpts {
   account?: string;
 }
 
-/** 常驻服务在线时，CLI 自动走本地 REST（避免与常驻进程抢 profile 锁） */
-async function tryProxy(opId: string, input: InvocationInput, opts: GlobalOpts): Promise<boolean> {
+/** 读取 profile 锁，判断是否有进程持有浏览器 */
+function lockAlive(profileDir: string): boolean {
   try {
-    const cfg = loadConfig({ configPath: opts.config });
-    const resolved = resolveAccount(cfg, opts.account);
-    const port = resolved.config.port;
-    const probe = await fetch(`http://127.0.0.1:${port}/v1/health`, { signal: AbortSignal.timeout(800) });
-    if (!probe.ok) return false;
-    const op = getOperation(opId);
-    const pathParams = input.pathParams ?? {};
-    let path = op.rest.path.replace(/\{([^}]+)\}/g, (_m, k: string) => encodeURIComponent(String(pathParams[k] ?? '')));
-    const qs = new URLSearchParams();
-    for (const [k, v] of Object.entries(input.query ?? {})) {
-      if (v === undefined || v === null) continue;
-      qs.set(k, Array.isArray(v) ? v.join(',') : String(v));
-    }
-    if ([...qs.keys()].length) path += `?${qs.toString()}`;
-    const headers: Record<string, string> = { authorization: `Bearer ${resolved.config.apiToken}` };
-    const init: RequestInit = { method: op.rest.method, headers };
-    if (op.rest.body && input.body !== undefined) {
-      headers['content-type'] = 'application/json';
-      init.body = JSON.stringify(input.body);
-    }
-    const res = await fetch(`http://127.0.0.1:${port}${path}`, init);
-    const text = await res.text();
-    type ProxyJson = { ok?: boolean; error?: { code?: string } };
-    let json: ProxyJson | null = null;
-    try {
-      json = JSON.parse(text) as ProxyJson;
-    } catch {
-      return false;
-    }
-    console.log(JSON.stringify(json, null, 2));
-    if (json && json.ok === false) {
-      process.exitCode = EXIT_CODES[(json.error?.code ?? 'INTERNAL') as ErrorCode] ?? 1;
-    }
+    const pid = Number(fs.readFileSync(path.join(profileDir, '.tanji.lock'), 'utf-8').trim());
+    if (!Number.isFinite(pid) || pid <= 0) return false;
+    process.kill(pid, 0);
     return true;
   } catch {
     return false;
   }
 }
+
+/** 常驻服务在线时，CLI 自动走 REST；服务不可达且无 profile 锁时才回退本地 */
+async function tryProxy(opId: string, input: InvocationInput, opts: GlobalOpts): Promise<boolean> {
+  const cfg = loadConfig({ configPath: opts.config });
+  const resolved = resolveAccount(cfg, opts.account);
+  const client = new RemoteTanjiClient(resolved.config);
+  try {
+    const envelope = await client.callEnvelope(opId, input);
+    console.log(JSON.stringify(envelope, null, 2));
+    if (!envelope.ok) {
+      process.exitCode = EXIT_CODES[(envelope.error?.code ?? 'INTERNAL') as ErrorCode] ?? 1;
+    }
+    return true;
+  } catch (err) {
+    const e = asTanjiError(err);
+    // 服务不可达且本机没有 profile 锁：允许单次命令本地启动浏览器
+    if (e.code === 'SERVICE_UNAVAILABLE' && !lockAlive(resolved.config.profileDir)) return false;
+    console.error(
+      JSON.stringify(
+        failureEnvelope(e.toJSON(), {
+          requestId: `cli_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+          tookMs: 0,
+        }),
+        null,
+        2,
+      ),
+    );
+    process.exitCode = EXIT_CODES[e.code] ?? 1;
+    return true;
+  }
+}
+
 
 async function run(opId: string, input: InvocationInput, opts: GlobalOpts): Promise<void> {
   if (await tryProxy(opId, input, opts)) return;
@@ -442,10 +447,25 @@ export function createCli(): Command {
 
   program
     .command('mcp')
-    .description('以 stdio 启动 MCP server')
-    .action(async (_options, cmd: Command) => {
-      const app = await createApp({ configPath: g(cmd).config, accountId: g(cmd).account, logToStdout: false });
-      await startMcpServer(app);
+    .description('启动 MCP stdio server（默认代理到常驻 REST 服务，不打开本地浏览器）')
+    .option('--local', '强制本地 App（会独占 profile，仅开发/无服务时使用）')
+    .option('--proxy', '强制代理到 REST（默认行为）')
+    .option('--url <url>', 'REST 服务地址（默认 TANJI_CLIENT_URL 或配置 host/port）')
+    .action(async (options: { local?: boolean; url?: string }, cmd: Command) => {
+      const gopts = g(cmd);
+      const backend = await createMcpBackend({
+        mode: options.local ? 'local' : 'remote',
+        ...(options.url ? { url: options.url } : {}),
+        configPath: gopts.config,
+        accountId: gopts.account,
+      });
+      await startMcpServer(backend);
+      const shutdown = async () => {
+        await backend.close().catch(() => {});
+        process.exit(0);
+      };
+      process.once('SIGINT', () => void shutdown());
+      process.once('SIGTERM', () => void shutdown());
     });
 
   // 为每个 leaf command 挂上由 operations 生成的详细帮助

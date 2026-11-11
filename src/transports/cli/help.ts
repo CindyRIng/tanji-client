@@ -126,6 +126,7 @@ Env（优先级：CLI 参数 > 环境变量 > ~/.tanji-client/config.json > 默�
     TANJI_RATE_PER_MIN       上游限频（默认 20 次/分）
     TANJI_MAX_PAGES          单次任务翻页上限（默认 5）
     TANJI_ACCOUNT            默认账号 id（多账号配置时）
+    TANJI_CLIENT_URL         CLI/MCP 代理的 REST 地址（默认 http://host:port）
     TANJI_LOG_FILE           日志文件（默认 ~/.tanji-client/logs/tanji.log）
     TANJI_LOG_MAX_BYTES      单个日志文件大小上限（默认 10MB）
     TANJI_LOG_KEEP           保留历史日志个数（默认 5）
@@ -149,7 +150,8 @@ Env（优先级：CLI 参数 > 环境变量 > ~/.tanji-client/config.json > 默�
     tanji filters registry --category 风险信息                # 345 个筛选条件
     tanji cache stats / tanji cache clear --all
     tanji serve --port 8787 [--start-browser]                 # REST + /docs（--start-browser 立刻拉起会话）
-    tanji mcp [--account main]                                # MCP stdio server
+    tanji mcp [--account main] [--url http://127.0.0.1:8787] # MCP stdio server（默认代理 REST）
+    tanji mcp --local                                         # 仅开发：本地 App（独占 profile）
     tanji accounts list                                       # 多账号与运行状态
     tanji accounts start main                                 # 后台常驻（单账号）
     tanji accounts start --all                                # 多账号全部常驻（每个账号独立进程/端口/profile）

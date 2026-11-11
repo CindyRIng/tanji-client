@@ -6,16 +6,16 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 import { z } from 'zod';
 import { mcpTools, getOperation } from '../../api/operations.js';
-import { invoke, type InvocationInput } from '../../api/dispatch.js';
+import type { InvocationInput } from '../../api/dispatch.js';
 import { asTanjiError } from '../../errors/catalog.js';
 import { failureEnvelope, successEnvelope } from '../../schemas/envelope.js';
 import { VERSION } from '../../service.js';
-import type { App } from '../../app.js';
+import type { McpBackend } from '../../mcp/backend.js';
 import { toJsonSchema } from '../../generators/json-schema.js';
 
 const TOOL_MAP = new Map(mcpTools().map((t) => [t.name, t]));
 
-export function createMcpServer(app: App): Server {
+export function createMcpServer(backend: McpBackend): Server {
   const server = new Server({ name: 'tanji-client', version: VERSION }, { capabilities: { tools: {} } });
 
   server.setRequestHandler(ListToolsRequestSchema, async () => ({
@@ -46,7 +46,7 @@ export function createMcpServer(app: App): Server {
       if (!parsed.success) throw parsed.error;
       const op = getOperation(tool.operationId);
       const input: InvocationInput = mcpArgsToInvocation(op.id, parsed.data as Record<string, unknown>);
-      const result = await invoke(app.service, tool.operationId, input);
+      const result = await backend.invoke(tool.operationId, input);
       const envelope = successEnvelope(result.data, {
         requestId: rid,
         tookMs: Date.now() - started,
@@ -98,11 +98,11 @@ function mcpArgsToInvocation(operationId: string, args: Record<string, unknown>)
   }
 }
 
-export async function startMcpServer(app: App): Promise<void> {
-  const server = createMcpServer(app);
+export async function startMcpServer(backend: McpBackend): Promise<void> {
+  const server = createMcpServer(backend);
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error('[mcp] tanji-client MCP server started (stdio)');
+  console.error(`[mcp] tanji-client MCP server started (stdio, backend=${backend.mode}${backend.serviceUrl ? `, url=${backend.serviceUrl}` : ''})`);
 }
 
 export { z };
