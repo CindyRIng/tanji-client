@@ -24,6 +24,9 @@ All notable changes to tanji-client are documented here.
 
 ### Fixed
 
+- 登录：识别“账号中心已登录、sales 会话失效”的中间态，自动走「探迹拓客」SSO 恢复，避免手机号表单 30s 超时。
+- 登录：服务启动后自动恢复检查；重登失败记录 `session.relogin.failed` 并指数退避（5/10/20/40/60 分钟）。
+- 登录：headless 下验证码返回明确的 `CAPTCHA_REQUIRED`，不再静默重试。
 - 企业查询第 2 页起改走 advance-search-v2，避免企业查询接口 403。
 - 上游新增/空字段的兼容（nullable 数值、动态字段）。
 - CLI/MCP 日志不再污染 stdout/JSON 输出。

@@ -33,6 +33,10 @@ export class DefaultSessionManager implements SessionManager {
   private starting: Promise<void> | null = null;
   private heartbeatTimer: NodeJS.Timeout | null = null;
   private reloginBusy = false;
+  private reloginFailures = 0;
+  private reloginNotBefore = 0;
+  private loginBusy = false;
+  private startupRecoveryTimer: NodeJS.Timeout | null = null;
   private lastHeartbeatAt: string | undefined;
   private lockPath: string | null = null;
   private lockFd: number | null = null;
@@ -87,6 +91,14 @@ export class DefaultSessionManager implements SessionManager {
       this.state = 'degraded';
       this.logger?.info('session.started', { profileDir: this.cfg.profileDir, headless: this.cfg.headless });
       this.startHeartbeat();
+      // 启动后做一次自动恢复检查（不阻塞 serve 的首次 status）
+      if (this.cfg.session.autoRelogin && this.cfg.phone && this.cfg.password) {
+        this.startupRecoveryTimer = setTimeout(() => {
+          this.startupRecoveryTimer = null;
+          void this.tick().catch(() => {});
+        }, 5_000);
+        this.startupRecoveryTimer.unref?.();
+      }
     } catch (err) {
       this.releaseLock();
       this.state = 'stopped';
@@ -96,6 +108,10 @@ export class DefaultSessionManager implements SessionManager {
 
   async stop(): Promise<void> {
     this.stopHeartbeat();
+    if (this.startupRecoveryTimer) {
+      clearTimeout(this.startupRecoveryTimer);
+      this.startupRecoveryTimer = null;
+    }
     await this.host?.close().catch(() => {});
     this.host = null;
     this.client = null;
@@ -158,21 +174,38 @@ export class DefaultSessionManager implements SessionManager {
 
   async login(req: LoginRequest): Promise<Status> {
     await this.ensureStarted();
-    const before = await this.status();
-    if (req.force || !before.loggedIn) {
-      await performPasswordLogin(this.page(), this.cfg, req.interactive);
+    this.loginBusy = true;
+    try {
+      const before = await this.status();
+      if (req.force || !before.loggedIn) {
+        try {
+          await performPasswordLogin(this.page(), this.cfg, req.interactive);
+        } catch (err) {
+          const e = err instanceof TanjiError ? err : new TanjiError('INTERNAL', String(err), { cause: err });
+          this.logger?.error('session.login.failed', {
+            code: e.code,
+            message: e.message,
+            ...(e.details ? { details: e.details } : {}),
+          });
+          throw e;
+        }
+      }
+      const after = await this.status();
+      this.logger?.[after.loggedIn ? 'info' : 'warn']('session.login', {
+        loggedIn: after.loggedIn,
+        health: after.health,
+        message: after.message,
+      });
+      if (!after.loggedIn) {
+        throw new TanjiError('LOGIN_FAILED', after.message ?? '登录后仍无法读取额度，请检查账号状态');
+      }
+      this.state = 'ok';
+      this.reloginFailures = 0;
+      this.reloginNotBefore = 0;
+      return after;
+    } finally {
+      this.loginBusy = false;
     }
-    const after = await this.status();
-    this.logger?.[after.loggedIn ? 'info' : 'warn']('session.login', {
-      loggedIn: after.loggedIn,
-      health: after.health,
-      message: after.message,
-    });
-    if (!after.loggedIn) {
-      throw new TanjiError('LOGIN_FAILED', after.message ?? '登录后仍无法读取额度，请检查账号状态');
-    }
-    this.state = 'ok';
-    return after;
   }
 
   private startHeartbeat(): void {
@@ -192,21 +225,42 @@ export class DefaultSessionManager implements SessionManager {
   }
 
   private async tick(): Promise<void> {
-    if (!this.client || this.reloginBusy) return;
+    if (!this.client || this.reloginBusy || this.loginBusy) return;
     const status = await this.status();
     this.logger?.debug('session.heartbeat', { health: status.health, loggedIn: status.loggedIn });
+    if (status.loggedIn) {
+      this.reloginFailures = 0;
+      this.reloginNotBefore = 0;
+      return;
+    }
     if (status.health !== 'needs_human' || !this.cfg.session.autoRelogin) return;
     if (!this.cfg.phone || !this.cfg.password) return;
+    if (Date.now() < this.reloginNotBefore) return;
+
     this.reloginBusy = true;
     try {
       this.logger?.warn('session.relogin.start');
       await performPasswordLogin(this.page(), this.cfg, false);
       this.state = 'ok';
       this.lastHeartbeatAt = new Date().toISOString();
+      this.reloginFailures = 0;
+      this.reloginNotBefore = 0;
       this.logger?.info('session.relogin.ok');
     } catch (err) {
-      const e = err instanceof TanjiError ? err : new TanjiError('INTERNAL', String(err));
+      const e = err instanceof TanjiError ? err : new TanjiError('INTERNAL', String(err), { cause: err });
+      this.reloginFailures++;
+      // 5m → 10m → 20m → 40m → 60m 上限，避免每 5 分钟无限重试
+      const base = Math.max(30, this.cfg.session.heartbeatSec) * 1000;
+      const delayMs = Math.min(base * 2 ** Math.min(this.reloginFailures - 1, 6), 60 * 60 * 1000);
+      this.reloginNotBefore = Date.now() + delayMs;
       this.state = e.code === 'CAPTCHA_REQUIRED' ? 'needs_human' : 'degraded';
+      this.logger?.error('session.relogin.failed', {
+        code: e.code,
+        message: e.message,
+        failures: this.reloginFailures,
+        nextRetryMs: delayMs,
+        ...(e.details ? { details: e.details } : {}),
+      });
     } finally {
       this.reloginBusy = false;
     }

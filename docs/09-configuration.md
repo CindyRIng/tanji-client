@@ -241,6 +241,18 @@ MCP 客户端配置示例（Claude/Codex 等）：
 - 服务未启动时，工具列表仍可返回；调用数据工具会返回 `SERVICE_UNAVAILABLE`，不会去抢 profile 锁。
 - `--local` 会自己启动浏览器，只在没有常驻服务时使用；同一 profile 只能有一个 owner。
 
+### 7.1 登录状态自动恢复
+
+- 账号中心仍有会话、但 sales 会话失效时，登录页会跳转到个人中心；客户端会自动点「探迹拓客」恢复，不再卡在手机号输入框。
+- 服务启动 5 秒后自动做一次恢复检查。
+- 自动重登失败会记录 `session.relogin.failed`，并指数退避（5/10/20/40/60 分钟）。
+- headless 服务遇到验证码会返回 `CAPTCHA_REQUIRED`；请停止服务后用 headful 登录：
+  ```bash
+  systemctl --user stop tanji-client-main.service
+  TANJI_HEADLESS=false DISPLAY=:0 tanji login --interactive
+  systemctl --user start tanji-client-main.service
+  ```
+
 ## 8. 启动与验证
 
 ```bash

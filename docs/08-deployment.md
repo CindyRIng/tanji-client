@@ -68,6 +68,14 @@ tanji status
 tanji health
 ```
 
+登录流程会自动识别三种状态：
+
+- 已在 `sales.tungee.com`：直接返回；
+- 登录页被 302 到 `user.tungee.com/home`（账号中心仍登录、sales 会话失效）：自动点击「探迹拓客」恢复 SSO，不再等待手机号表单；
+- 真正未登录：切账号登录并填写手机号/密码。
+
+服务启动 5 秒后会做一次自动恢复尝试；失败会写入 `session.relogin.failed`，并按 5m → 10m → 20m → 40m → 60m 退避，避免每 5 分钟无限重试。若出现验证码且服务是 headless，会返回 `CAPTCHA_REQUIRED` 并提示改用 headful 登录。
+
 ## 5. 运行方式
 
 ### 5.1 前台
